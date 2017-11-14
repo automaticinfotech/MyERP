@@ -46,7 +46,7 @@
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="com.aits.model"></property>
+		<property name="packagesToScan" value="com.aits.myerp.model"></property>
 	</bean>
 
 	<!-- Transaction -->
