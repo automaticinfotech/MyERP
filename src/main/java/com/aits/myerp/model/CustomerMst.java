@@ -28,7 +28,7 @@ public class CustomerMst {
 	private String customerAddressline2;
 	
 	@Column
-	private String customerEmail;
+	private String customerEmail; 
 	
 	@Column
 	private String isAcive;

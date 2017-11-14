@@ -18,7 +18,7 @@ public class VendorMst {
 	@Column
 	private String vendorCode;
 
-	@Column
+	@Column 
 	private String vendorName;
 
 	@Column
