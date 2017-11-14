@@ -10,7 +10,7 @@ import com.aits.myerp.dao.VendorDao;
 import com.aits.myerp.model.VendorMst;
 
 @Service
-public class VendorServiceImpl implements VendorServices{
+public class VendorServiceImpl implements VendorServices{ 
 
 	@Autowired
 	private VendorDao vendorDao;

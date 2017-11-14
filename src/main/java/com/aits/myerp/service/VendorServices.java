@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.aits.myerp.model.VendorMst;
 
-public interface VendorServices {
+public interface VendorServices { 
 
 	public List<VendorMst> getAllVendor();
 	

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.aits.myerp.model.VendorMst;
 
 @Repository
-public class VendorDaoImpl implements VendorDao{
+public class VendorDaoImpl implements VendorDao{ 
 
 	@Autowired
 	private SessionFactory sessionFactory;

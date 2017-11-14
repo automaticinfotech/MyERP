@@ -18,7 +18,7 @@ import com.aits.myerp.service.VendorServices;
 public class VendorController implements appConstant 
 {
 	@Autowired
-	private VendorServices vendorService;
+	private VendorServices vendorService; 
 	
 	@RequestMapping(value=LIST_OF_VENDOR, method = RequestMethod.GET)
 	public ModelAndView listOfVendor() {
