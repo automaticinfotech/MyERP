@@ -10,17 +10,13 @@ public class HomeController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String homePage() {
 		System.out.println("Inside Controller");
-		
-		return "admin/adminLogin";
+		return "admin/adminDashboard";
 		
 	}
 	
 	@RequestMapping(value="/adminLogin", method = RequestMethod.GET)
 	public String adminLogin() {
-		
-		
 		return "admin/adminLogin";
-		
 	}
 	
 	
