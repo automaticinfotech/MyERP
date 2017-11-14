@@ -35,7 +35,7 @@
 				</span>
 			</a>
 				<ul class="treeview-menu">
-					<li class="active"><a href="/ECOMM/getCategoryMasterList"><i
+					<li class="active"><a href="/MyERP/listOfVendor"><i
 							class="fa fa-circle-o"></i>Manage Vendor</a></li>
 				</ul></li>
 
