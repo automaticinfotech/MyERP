@@ -18,7 +18,7 @@ public class CustomerDaoImpl implements CustomerDao{
 	
 	@Override
 	public List<CustomerMst> getAllCustomer() {
-		return sessionFactory.getCurrentSession().createQuery("from CustomerMst where isActive = 'on' ").list();
+		return sessionFactory.getCurrentSession().createQuery("from CustomerMst where isActive = 'Active' ").list();
 	}
 
 	@Override

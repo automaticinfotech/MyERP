@@ -28,17 +28,18 @@
 						      <form action="insertMaterial" method="post"  modelAttribute="materialMst">
 									<!-- text input -->
 											<div class="form-group">
+												<h3>Create Material</h3>
 												<label>Material Name</label> <input type="text" class="form-control"
-													placeholder="Enter Material Name..." name="materialName">
+													placeholder="Enter Material Name..." name="materialName" maxlength="20" required>
 													
 												<label>Material Code</label> <input type="text" class="form-control"
 													name="materialCode" value="${materialCode}" readonly>	
 													
 												<label>Material Description</label> <input type="text" class="form-control"
-													placeholder="Enter Material Description..." name="materialDesc">
+													placeholder="Enter Material Description..." name="materialDesc" maxlength="50" required>
 													
 												<label>Unite of Measurement</label> <input type="text" class="form-control"
-													placeholder="Enter UOM" name="UOM">
+													placeholder="Enter UOM" name="UOM" maxlength="4" required>
 													
 												<!-- <label>is Finish Good</label> <input type="text" class="form-control"
 													placeholder="Enter Finish Good status..." name="isFG"> -->
@@ -59,11 +60,11 @@
 													placeholder="Enter Active..." name="isActive"> -->
 												<label>Active Status</label><br>	
 													<label>Active
-														  <input type="radio" checked="checked" name="isActive" value="on">
+														  <input type="radio" checked="checked" name="isActive" value="Active">
 														  <span class="checkmark"></span>
 														</label>
 														<label>Inactive
-														  <input type="radio" name="isActive" value="off">
+														  <input type="radio" name="isActive" value="inactive">
 														  <span class="checkmark"></span>
 													</label>	
 													
@@ -76,7 +77,7 @@
 						      <form action="updateMaterial" method="post"  modelAttribute="materialMst">
 									<!-- text input -->
 											<div class="form-group">
-											
+											<h3>Update Material</h3>
 											<c:forEach
 												items="${listMaterial}" var="listMaterial">
 												
@@ -84,16 +85,17 @@
 													 name="materialId" value="${listMaterial.materialId}">
 												
 												<label>Material Name</label> <input type="text" class="form-control"
-													 name="materialName" value="${listMaterial.materialName}">
+													 name="materialName" value="${listMaterial.materialName}" maxlength="20" required>
 													
 												<label>Material Code</label> <input type="text" class="form-control"
 													name="materialCode" value="${listMaterial.materialCode}" readonly>	
 													
 												<label>Material Description</label> <input type="text" class="form-control"
-											        name="materialDesc" value="${listMaterial.materialDesc}">
+											        name="materialDesc" value="${listMaterial.materialDesc}" maxlength="50" required>
+											        
 													
 												<label>Unite of Measurement</label> <input type="text" class="form-control"
-													 name="UOM" value="${listMaterial.UOM}">
+													 name="UOM" value="${listMaterial.UOM}" maxlength="6" required>
 													
 												<%-- <label>is Finish Good</label> <input type="text" class="form-control"
 													name="isFG" value="${listMaterial.isFG}"> --%>
@@ -106,7 +108,7 @@
 															  <span class="checkmark"></span>
 															</label>
 															<label>Inactive
-															  <input type="radio" name="isFG" value="off">
+															  <input type="radio" name="isFG" value="inactive">
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:when>
@@ -128,25 +130,25 @@
 													name="isActive" value="${listMaterial.isActive}"> --%>
 												<br>	
 												<c:choose>
-						    						<c:when test="${listMaterial.isActive eq 'on'}">
+						    						<c:when test="${listMaterial.isActive eq 'Active'}">
 						    							<label>Active Status</label><br>	
 														<label>Active
-															  <input type="radio" checked="checked" name="isActive" value="on">
+															  <input type="radio" checked="checked" name="isActive" value="Active">
 															  <span class="checkmark"></span>
 															</label>
 															<label>Inactive
-															  <input type="radio" name="isActive" value="off">
+															  <input type="radio" name="isActive" value="inactive">
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:when>
 						    						<c:otherwise>
 						    							<label>Active Status</label><br>	
 														<label>Active
-															  <input type="radio"  name="isActive" value="on">
+															  <input type="radio"  name="isActive" value="Active">
 															  <span class="checkmark"></span>
 															</label>
 															<label>Inactive
-															  <input type="radio" checked="checked" name="isActive" value="off">
+															  <input type="radio" checked="checked" name="isActive" value="inactive">
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:otherwise>

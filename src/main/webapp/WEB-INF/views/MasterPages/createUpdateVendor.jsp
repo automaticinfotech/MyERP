@@ -9,8 +9,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/toggle/toggleEffect.css">	
 	
 <script type="text/javascript">	
 	
@@ -34,30 +32,31 @@
 						      <form action="insertVendor" method="post"  modelAttribute="vendor">
 									<!-- text input -->
 											<div class="form-group">
+												<h3>Create Vendor</h3>
 												<label>Vendor Name</label> <input type="text" class="form-control"
-													placeholder="Enter Vendor Name..." name="vendorName">
+													placeholder="Enter Vendor Name..." name="vendorName" maxlength="20" required>
 													
 												<label>Vendor Code</label> <input type="text" class="form-control"
 													placeholder="Enter vendor Code..." name="vendorCode" value="${vendorCode}" readonly>	
 													
-												<label>Vendor Email</label> <input type="text" class="form-control"
-													placeholder="Enter vendor Email..." name="vendorEmail">
+												<label>Vendor Email</label> <input type="email" class="form-control"
+													placeholder="Enter vendor Email..." name="vendorEmail" required>
 													
 												<label>vendorAddressline1</label> <input type="text" class="form-control"
-													placeholder="Enter vendorAddressline1..." name="vendorAddressline1">
+													placeholder="Enter vendorAddressline1..." name="vendorAddressline1" maxlength="50" required>
 													
 												<label>vendorAddressline2</label> <input type="text" class="form-control"
-													placeholder="Enter vendorAddressline2..." name="vendorAddressline2">
+													placeholder="Enter vendorAddressline2..." name="vendorAddressline2" maxlength="50" required>
 													
 												<!-- <label>Active Status</label> <input type="text" class="form-control"
 													name="isAcive"> -->		
 												<label>Active Status</label><br>	
 													<label>Active
-														  <input type="radio" checked="checked" name="isAcive" value="on">
+														  <input type="radio" checked="checked" name="isAcive" value="Active">
 														  <span class="checkmark"></span>
 														</label>
 														<label>Inactive
-														  <input type="radio" name="isAcive" value="off">
+														  <input type="radio" name="isAcive" value="Inactive">
 														  <span class="checkmark"></span>
 													</label>
 											</div>		
@@ -69,7 +68,7 @@
 						      <form action="updateVendor" method="post"  modelAttribute="vendor">
 									<!-- text input -->
 											<div class="form-group">
-											
+											<h3>Update Vendor</h3>
 											<c:forEach
 												items="${listVendor}" var="listVendor">
 												
@@ -77,43 +76,43 @@
 													 name="vendorId" value="${listVendor.vendorId}">
 												
 												<label>Vendor Name</label> <input type="text" class="form-control"
-													 name="vendorName" value="${listVendor.vendorName}">
+													 name="vendorName" value="${listVendor.vendorName}" required>
 													
 												<label>Vendor Code</label> <input type="text" class="form-control"
 													name="vendorCode" value="${listVendor.vendorCode}" readonly>	
 													
-												<label>Vendor Email</label> <input type="text" class="form-control"
-											        name="vendorEmail" value="${listVendor.vendorEmail}">
+												<label>Vendor Email</label> <input type="email" class="form-control"
+											        name="vendorEmail" value="${listVendor.vendorEmail}" required>
 													
 												<label>vendorAddressline1</label> <input type="text" class="form-control"
-													 name="vendorAddressline1" value="${listVendor.vendorAddressline1}">
+													 name="vendorAddressline1" value="${listVendor.vendorAddressline1}" required>
 													
 												<label>vendorAddressline2</label> <input type="text" class="form-control"
-													name="vendorAddressline2" value="${listVendor.vendorAddressline2}">
+													name="vendorAddressline2" value="${listVendor.vendorAddressline2}" required>
 													
 												<%-- <label>Active Status</label> <input type="text" class="form-control"
 													name="isAcive" value="${listVendor.isAcive}"> --%>
 													
 												<c:choose>
-						    						<c:when test="${listVendor.isAcive eq 'on'}">
+						    						<c:when test="${listVendor.isAcive eq 'Active'}">
 						    							<label>Active Status</label><br>	
 														<label>Active
-															  <input type="radio" checked="checked" name="isAcive" value="on">
+															  <input type="radio" checked="checked" name="isAcive" value="Active">
 															  <span class="checkmark"></span>
 															</label>
 															<label>Inactive
-															  <input type="radio" name="isAcive" value="off">
+															  <input type="radio" name="isAcive" value="Inactive">
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:when>
 						    						<c:otherwise>
 						    							<label>Active Status</label><br>	
 														<label>Active
-															  <input type="radio"  name="isAcive" value="on">
+															  <input type="radio"  name="isAcive" value="Active">
 															  <span class="checkmark"></span>
 															</label>
 															<label>Inactive
-															  <input type="radio" checked="checked" name="isAcive" value="off">
+															  <input type="radio" checked="checked" name="isAcive" value="Inactive">
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:otherwise>
@@ -206,7 +205,8 @@
 			};
 			</script>
 
- 
+ 		<script
+			src="${pageContext.request.contextPath}/resources/validation/formValidation.js"></script>
  
 	</div>
 </body>

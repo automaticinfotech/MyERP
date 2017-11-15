@@ -17,7 +17,7 @@ public class VendorDaoImpl implements VendorDao{
 	
 	@Override
 	public List<VendorMst> getAllVendor() {
-		return sessionFactory.getCurrentSession().createQuery("from VendorMst where isAcive = 'on' ").list();
+		return sessionFactory.getCurrentSession().createQuery("from VendorMst where isAcive = 'Active' ").list();
 	}
 
 	@Override

@@ -45,7 +45,6 @@
 								<th>Address Line 2</th>
 								<th>Vendor Email</th>
 								<th>Vendor Status</th>
-								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
@@ -53,16 +52,17 @@
 							<c:forEach var="listVendor" items="${ listVendor}">
 								<tr>
 									<td>${listVendor.vendorId}</td>
-									<td>${listVendor.vendorName}</td>
+									<%-- <td>${listVendor.vendorName}</td> --%>
+									<td><a href="/MyERP/getVendorById?vendorId=${listVendor.vendorId}">${listVendor.vendorName}</a></td>
 									<td>${listVendor.vendorCode}</td>
 									<td>${listVendor.vendorAddressline1}</td>
 									<td>${listVendor.vendorAddressline2}</td>
 									<td>${listVendor.vendorEmail}</td>
 									<td>${listVendor.isAcive}</td>
 									
-									<td>
+									<%-- <td>
 									<a href="/MyERP/getVendorById?vendorId=${listVendor.vendorId}"><button type="button" class="btn bg-purple margin">Edit</button></a>
-									</td>
+									</td> --%>
 									
 									<td>
 									<a href="/MyERP/deleteVendor?vendorId=${listVendor.vendorId}"><button type="button" class="btn bg-purple margin">Delete</button></a>

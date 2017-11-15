@@ -9,8 +9,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/toggle/toggleEffect.css">		
 	
 
 </head>
@@ -29,31 +27,32 @@
 						      <form action="insertCustomer" method="post"  modelAttribute="customerMst">
 									<!-- text input -->
 											<div class="form-group">
+												<h3>Create Customer</h3>
 												<label>Customer Name</label> <input type="text" class="form-control"
-													placeholder="Enter customer Name..." name="customerName">
+													placeholder="Enter customer Name..." name="customerName" maxlength="20" required>
 													
 												<label>Customer Code</label> <input type="text" class="form-control"
 													placeholder="Enter customer Code..." name="customerCode" value="${customerCode}" readonly>	
 													
-												<label>Customer Email</label> <input type="text" class="form-control"
-													placeholder="Enter customer Email..." name="customerEmail">
+												<label>Customer Email</label> <input type="email" class="form-control"
+													placeholder="Enter customer Email..." name="customerEmail"  required>
 													
 												<label>CustomerAddressline1</label> <input type="text" class="form-control"
-													placeholder="Enter customerAddressline1..." name="customerAddressline1">
+													placeholder="Enter customerAddressline1..." name="customerAddressline1" maxlength="50" required>
 													
 												<label>CustomerAddressline2</label> <input type="text" class="form-control"
-													placeholder="Enter customerAddressline2..." name="customerAddressline2">
+													placeholder="Enter customerAddressline2..." name="customerAddressline2" maxlength="50" required>
 													
 												<!-- <label>Active Status</label> <input type="text" class="form-control"
 													name="isActive"> -->
 													
 												<label>Active Status</label><br>	
 													<label>Active
-														  <input type="radio" checked="checked" name="isActive" value="on">
+														  <input type="radio" checked="checked" name="isActive" value="Active">
 														  <span class="checkmark"></span>
 														</label>
 														<label>Inactive
-														  <input type="radio" name="isActive" value="off">
+														  <input type="radio" name="isActive" value="inactive">
 														  <span class="checkmark"></span>
 													</label>			
 													
@@ -66,7 +65,7 @@
 						      <form action="updateCustomer" method="post"  modelAttribute="customerMst">
 									<!-- text input -->
 											<div class="form-group">
-											
+											<h3>Update Customer</h3>
 											<c:forEach
 												items="${listCustomerMst}" var="listCustomerMst">
 												
@@ -74,43 +73,43 @@
 													 name="customerId" value="${listCustomerMst.customerId}">
 												
 												<label>Customer Name</label> <input type="text" class="form-control"
-													 name="customerName" value="${listCustomerMst.customerName}">
+													 name="customerName" value="${listCustomerMst.customerName}" maxlength="20" required>
 													
 												<label>Customer Code</label> <input type="text" class="form-control"
 													name="customerCode" value="${listCustomerMst.customerCode}" readonly>	
 													
-												<label>Customer Email</label> <input type="text" class="form-control"
-											        name="customerEmail" value="${listCustomerMst.customerEmail}">
+												<label>Customer Email</label> <input type="email" class="form-control"
+											        name="customerEmail" value="${listCustomerMst.customerEmail}" required>
 													
 												<label>CustomerAddressline1</label> <input type="text" class="form-control"
-													 name="customerAddressline1" value="${listCustomerMst.customerAddressline1}">
+													 name="customerAddressline1" value="${listCustomerMst.customerAddressline1}" maxlength="50" required>
 													
 												<label>CustomerAddressline2</label> <input type="text" class="form-control"
-													name="customerAddressline2" value="${listCustomerMst.customerAddressline2}">
+													name="customerAddressline2" value="${listCustomerMst.customerAddressline2}" maxlength="50" required>
 													
 												<%-- <label>Active Status</label> <input type="text" class="form-control"
 													name="isActive" value="${listCustomerMst.isActive}"> --%>
 													
 												<c:choose>
-						    						<c:when test="${listCustomerMst.isActive eq 'on'}">
+						    						<c:when test="${listCustomerMst.isActive eq 'Active'}">
 						    							<label>Active Status</label><br>	
 														<label>Active
-															  <input type="radio" checked="checked" name="isActive" value="on">
+															  <input type="radio" checked="checked" name="isActive" value="Active">
 															  <span class="checkmark"></span>
 															</label>
 															<label>Inactive
-															  <input type="radio" name="isActive" value="off">
+															  <input type="radio" name="isActive" value="inactive">
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:when>
 						    						<c:otherwise>
 						    							<label>Active Status</label><br>	
 														<label>Active
-															  <input type="radio"  name="isActive" value="on">
+															  <input type="radio"  name="isActive" value="Active">
 															  <span class="checkmark"></span>
 															</label>
 															<label>Inactive
-															  <input type="radio" checked="checked" name="isActive" value="off">
+															  <input type="radio" checked="checked" name="isActive" value="inactive">
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:otherwise>

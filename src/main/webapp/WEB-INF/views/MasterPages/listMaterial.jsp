@@ -39,13 +39,12 @@
 						<thead>
 							<tr>
 								<th>material ID</th>
-								<th>material Code</th>
 								<th>material Name</th>
+								<th>material Code</th>
 								<th>material Desc</th>
 								<th>UOM</th>
 								<th>is Finish Good</th>
 								<th>material status</th>
-								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
@@ -53,16 +52,16 @@
 							<c:forEach var="listMaterial" items="${ listMaterial}">
 								<tr>
 									<td>${listMaterial.materialId}</td>
+									<td><a href="/MyERP/getMaterialById?materialId=${listMaterial.materialId}">${listMaterial.materialName}</a></td>
 									<td>${listMaterial.materialCode}</td>
-									<td>${listMaterial.materialName}</td>
 									<td>${listMaterial.materialDesc}</td>
 									<td>${listMaterial.UOM}</td>
 									<td>${listMaterial.isFG}</td>
 									<td>${listMaterial.isActive}</td>
 									
-									<td>
+									<%-- <td>
 									<a href="/MyERP/getMaterialById?materialId=${listMaterial.materialId}"><button type="button" class="btn bg-purple margin">Edit</button></a>
-									</td>
+									</td> --%>
 									
 									<td>
 									<a href="/MyERP/deleteMaterial?materialId=${listMaterial.materialId}"><button type="button" class="btn bg-purple margin">Delete</button></a>

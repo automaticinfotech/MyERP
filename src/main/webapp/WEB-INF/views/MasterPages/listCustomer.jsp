@@ -45,7 +45,6 @@
 								<th>Address Line 2</th>
 								<th>Customer Email</th>
 								<th>Customer Status</th>
-								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
@@ -53,16 +52,17 @@
 							<c:forEach var="listCustomer" items="${ listCustomerMst}">
 								<tr>
 									<td>${listCustomer.customerId}</td>
-									<td>${listCustomer.customerName}</td>
+									<%-- <td>${listCustomer.customerName}</td> --%>
+									<td><a href="/MyERP/getCustomerById?customerId=${listCustomer.customerId}">${listCustomer.customerName}</a></td>
 									<td>${listCustomer.customerCode}</td>
 									<td>${listCustomer.customerAddressline1}</td>
 									<td>${listCustomer.customerAddressline2}</td>
 									<td>${listCustomer.customerEmail}</td>
 									<td>${listCustomer.isActive}</td>
 									
-									<td>
+									<%-- <td>
 									<a href="/MyERP/getCustomerById?customerId=${listCustomer.customerId}"><button type="button" class="btn bg-purple margin">Edit</button></a>
-									</td>
+									</td> --%>
 									
 									<td>
 									<a href="/MyERP/deleteCustomer?customerId=${listCustomer.customerId}"><button type="button" class="btn bg-purple margin">Delete</button></a>
