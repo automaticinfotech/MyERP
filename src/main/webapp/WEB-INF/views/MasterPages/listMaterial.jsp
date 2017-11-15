@@ -32,38 +32,38 @@
 			
 				<!-- /.box-header -->
 				<div class="box-body">
-				<a href="/MyERP/createVendor"><button type="button" class="btn bg-purple margin">Create New</button></a>
+				<a href="/MyERP/createMaterial"><button type="button" class="btn bg-purple margin">Create New</button></a>
 					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>Vendor ID</th>
-								<th>Vendor Name</th>
-								<th>Vendor Code</th>
-								<th>Address Line 1</th>
-								<th>Address Line 2</th>
-								<th>Vendor Email</th>
-								<th>Vendor Status</th>
+								<th>material ID</th>
+								<th>material Code</th>
+								<th>material Name</th>
+								<th>material Desc</th>
+								<th>UOM</th>
+								<th>is Finish Good</th>
+								<th>material status</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="listVendor" items="${ listVendor}">
+							<c:forEach var="listMaterial" items="${ listMaterial}">
 								<tr>
-									<td>${listVendor.vendorId}</td>
-									<td>${listVendor.vendorName}</td>
-									<td>${listVendor.vendorCode}</td>
-									<td>${listVendor.vendorAddressline1}</td>
-									<td>${listVendor.vendorAddressline2}</td>
-									<td>${listVendor.vendorEmail}</td>
-									<td>${listVendor.isAcive}</td>
+									<td>${listMaterial.materialId}</td>
+									<td>${listMaterial.materialCode}</td>
+									<td>${listMaterial.materialName}</td>
+									<td>${listMaterial.materialDesc}</td>
+									<td>${listMaterial.UOM}</td>
+									<td>${listMaterial.isFG}</td>
+									<td>${listMaterial.isActive}</td>
 									
 									<td>
-									<a href="/MyERP/getVendorById?vendorId=${listVendor.vendorId}"><button type="button" class="btn bg-purple margin">Edit</button></a>
+									<a href="/MyERP/getMaterialById?materialId=${listMaterial.materialId}"><button type="button" class="btn bg-purple margin">Edit</button></a>
 									</td>
 									
 									<td>
-									<a href="/MyERP/deleteVendor?vendorId=${listVendor.vendorId}"><button type="button" class="btn bg-purple margin">Delete</button></a>
+									<a href="/MyERP/deleteMaterial?materialId=${listMaterial.materialId}"><button type="button" class="btn bg-purple margin">Delete</button></a>
 									</td>
 									
 								</tr>
@@ -71,13 +71,13 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>Vendor ID</th>
-								<th>Vendor Name</th>
-								<th>Vendor Code</th>
+								<th>material ID</th>
+								<th>material Name</th>
+								<th>material Code</th>
 								<th>Address Line 1</th>
 								<th>Address Line 2</th>
-								<th>Vendor Email</th>
-								<th>Vendor Status</th>
+								<th>material Email</th>
+								<th>material Status</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>

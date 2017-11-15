@@ -14,5 +14,9 @@ public interface appConstant {
 	
 	//Material Mgmnt
     String LIST_OF_MATERIAL = "/listOfMaterial";
-
+    String CREATE_MATERIAL = "/createMaterial";
+	String INSERT_MATERIAL = "/insertMaterial";
+	String GET_MATERIAL_BY_ID = "/getMaterialById";
+	String UPDATE_MATERIAL = "/updateMaterial";
+	String DELETE_MATERIAL = "/deleteMaterial";
 }

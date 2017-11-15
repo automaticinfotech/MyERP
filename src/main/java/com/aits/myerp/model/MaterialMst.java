@@ -31,7 +31,7 @@ public class MaterialMst {
 	private String isFG;
 	
 	@Column
-	private String isAcive;
+	private String isActive;
 
 	public int getMaterialId() {
 		return materialId;
@@ -81,13 +81,15 @@ public class MaterialMst {
 		this.isFG = isFG;
 	}
 
-	public String getIsAcive() {
-		return isAcive;
+	public String getIsActive() {
+		return isActive;
 	}
 
-	public void setIsAcive(String isAcive) {
-		this.isAcive = isAcive;
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
 	}
+
+	
 
 	
 	

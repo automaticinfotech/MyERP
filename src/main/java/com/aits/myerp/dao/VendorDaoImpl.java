@@ -48,8 +48,9 @@ public class VendorDaoImpl implements VendorDao{
 		
 		boolean flag = true;
 		Session session = sessionFactory.getCurrentSession();
-		//VendorMst vendorMst =(VendorMst)session.get(VendorMst.class, vendor.getVendorId());
-		session.saveOrUpdate(vendor);
+		VendorMst vendorMst =(VendorMst)session.get(VendorMst.class, vendor.getVendorId());
+		vendorMst.setIsAcive("I");
+		session.saveOrUpdate(vendorMst);
 		return flag;
 	}
 

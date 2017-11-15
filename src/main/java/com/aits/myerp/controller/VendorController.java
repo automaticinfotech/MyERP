@@ -79,7 +79,7 @@ public class VendorController implements appConstant
 	@RequestMapping(value=UPDATE_VENDOR, method = RequestMethod.POST)
 	public ModelAndView updateVendor(@ModelAttribute VendorMst vendor) {
 		ModelAndView model = new  ModelAndView();
-		if(vendorService.addVendor(vendor))
+		if(vendorService.updateVendor(vendor))
 		{
 			model.addObject("Status", "Updated Successfully..!");
 		}
@@ -99,7 +99,7 @@ public class VendorController implements appConstant
 		ModelAndView model = new  ModelAndView();
 		if(vendorService.deleteVendor(vendor))
 		{
-			model.addObject("Status", "Updated Successfully..!");
+			model.addObject("Status", "Deleted Successfully..!");
 		}
 		else
 		{

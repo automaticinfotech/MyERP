@@ -38,10 +38,22 @@
 					<li class="active"><a href="/MyERP/listOfVendor"><i
 							class="fa fa-circle-o"></i>Manage Vendor</a></li>
 				</ul></li>
-
-
-			
 		</ul>
+		
+		<ul class="sidebar-menu">
+			<li class="treeview"><a href="#"> <i class="fa fa-dashboard"></i>
+					<span>Material Mgmt</span> <span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li class="active"><a href="/MyERP/listOfMaterial"><i
+							class="fa fa-circle-o"></i>Manage Material</a></li>
+			   </ul></li>
+		</ul>
+		
+		
+		
 	</section>
 	<!-- /.sidebar -->
 </aside>
