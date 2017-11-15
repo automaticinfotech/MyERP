@@ -9,4 +9,10 @@ public interface VendorServices {
 	public List<VendorMst> getAllVendor();
 	
 	public boolean addVendor(VendorMst vendor);
+	
+	public VendorMst getVendorById(VendorMst vendor);
+	
+	public boolean updateVendor(VendorMst vendor);
+	
+	public boolean deleteVendor(VendorMst vendor);
 }

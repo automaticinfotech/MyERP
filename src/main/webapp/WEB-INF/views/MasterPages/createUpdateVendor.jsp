@@ -32,7 +32,7 @@
 													placeholder="Enter Vendor Name..." name="vendorName">
 													
 												<label>Vendor Code</label> <input type="text" class="form-control"
-													placeholder="Enter vendor Code..." name="vendorCode" value="${vendorCode}">	
+													placeholder="Enter vendor Code..." name="vendorCode" value="${vendorCode}" readonly>	
 													
 												<label>Vendor Email</label> <input type="text" class="form-control"
 													placeholder="Enter vendor Email..." name="vendorEmail">
@@ -41,30 +41,48 @@
 													placeholder="Enter vendorAddressline1..." name="vendorAddressline1">
 													
 												<label>vendorAddressline2</label> <input type="text" class="form-control"
-													placeholder="Enter vendorAddressline2..." name="vendorAddressline1">
-													
-												<label>Category</label> <input type="text" class="form-control"
-													placeholder="Enter Category..." name="categoryMasterName">				
-													
+													placeholder="Enter vendorAddressline2..." name="vendorAddressline2">
 											</div>		
 																			
 									<button type="submit" class="btn btn-block btn-primary btn-sm">ADD</button>
 								</form>
 						    </c:when>
 						    <c:otherwise>
-						       <form action="/ECOMM/updateCategoryMaster" method="post"  modelAttribute="categoryMasterDto">
+						      <form action="updateVendor" method="post"  modelAttribute="vendor">
 									<!-- text input -->
 											<div class="form-group">
-												<input type="hidden" name="categoryMasterId" value="${categoryMasterDtoResponse.categoryMasterId}">
 											
-												<label>Category</label> <input type="text" class="form-control"
-													placeholder="Enter Category..." name="categoryMasterName" value="${categoryMasterDtoResponse.categoryMasterName}">
-													 
-												<input type="hidden" name="isActive" value="${categoryMasterDtoResponse.isActive}">
+											<c:forEach
+												items="${listVendor}" var="listVendor">
+												
+												<label>Vendor ID</label> <input type="hidden" class="form-control"
+													 name="vendorId" value="${listVendor.vendorId}">
+												
+												<label>Vendor Name</label> <input type="text" class="form-control"
+													 name="vendorName" value="${listVendor.vendorName}">
+													
+												<label>Vendor Code</label> <input type="text" class="form-control"
+													name="vendorCode" value="${listVendor.vendorCode}" readonly>	
+													
+												<label>Vendor Email</label> <input type="text" class="form-control"
+											        name="vendorEmail" value="${listVendor.vendorEmail}">
+													
+												<label>vendorAddressline1</label> <input type="text" class="form-control"
+													 name="vendorAddressline1" value="${listVendor.vendorAddressline1}">
+													
+												<label>vendorAddressline2</label> <input type="text" class="form-control"
+													name="vendorAddressline2" value="${listVendor.vendorAddressline2}">
+													
+												<label>Active Status</label> <input type="text" class="form-control"
+													name="isAcive" value="${listVendor.isAcive}">	
+												
+											</c:forEach>
 											</div>		
 																			
 									<button type="submit" class="btn btn-block btn-primary btn-sm">Update</button>
 								</form>
+						      
+						      
 						    </c:otherwise>
 						</c:choose>
 				

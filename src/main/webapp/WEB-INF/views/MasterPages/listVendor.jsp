@@ -56,7 +56,11 @@
 									<td>${listVendor.vendorAddressline2}</td>
 									<td>${listVendor.vendorEmail}</td>
 									<td>${listVendor.isAcive}</td>
-									<td>Delete</td>
+									
+									<td>
+									<a href="/MyERP/getVendorById?vendorId=${listVendor.vendorId}"><button type="button" class="btn bg-purple margin">Edit</button></a>
+									<a href="/MyERP/deleteVendor?vendorId=${listVendor.vendorId}"><button type="button" class="btn bg-purple margin">Delete</button></a>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>

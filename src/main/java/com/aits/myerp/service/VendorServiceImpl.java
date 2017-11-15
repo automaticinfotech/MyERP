@@ -27,4 +27,20 @@ public class VendorServiceImpl implements VendorServices{
 		return vendorDao.addVendor(vendor);
 	}
 
+	@Override
+	@Transactional
+	public VendorMst getVendorById(VendorMst vendor) {
+		return vendorDao.getVendorById(vendor);
+	}
+
+	@Override
+	@Transactional
+	public boolean updateVendor(VendorMst vendor) {
+		return vendorDao.updateVendor(vendor);	}
+	
+	@Override
+	@Transactional
+	public boolean deleteVendor(VendorMst vendor) {
+		return vendorDao.deleteVendor(vendor);	}
+
 }
