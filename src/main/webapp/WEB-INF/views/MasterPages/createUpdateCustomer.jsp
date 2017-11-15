@@ -71,6 +71,7 @@
 												
 												<input type="hidden" class="form-control"
 													 name="customerId" value="${listCustomerMst.customerId}">
+											
 												
 												<label>Customer Name</label> <input type="text" class="form-control"
 													 name="customerName" value="${listCustomerMst.customerName}" maxlength="20" required>
