@@ -1,16 +1,23 @@
 package com.aits.myerp.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "VendorMst")
 public class VendorMst {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int vendorId;
@@ -26,12 +33,15 @@ public class VendorMst {
 
 	@Column
 	private String vendorAddressline2;
-	
+
 	@Column
 	private String vendorEmail;
-	
+
 	@Column
 	private String isAcive;
+
+
+	
 
 	public int getVendorId() {
 		return vendorId;
@@ -88,7 +98,7 @@ public class VendorMst {
 	public void setIsAcive(String isAcive) {
 		this.isAcive = isAcive;
 	}
-	
-	
-	
+
+
+
 }

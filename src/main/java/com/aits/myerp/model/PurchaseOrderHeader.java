@@ -1,6 +1,7 @@
 package com.aits.myerp.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -52,10 +53,19 @@ public class PurchaseOrderHeader implements Serializable {
 	private String refDocDate;
 
 	
+
 	@ManyToOne
 	@JoinColumn(name = "vendorId")
 	private VendorMst vendorMst;
 	
+	
+	
+	public String getRefDocDate() {
+		return refDocDate;
+	}
+	public void setRefDocDate(String refDocDate) {
+		this.refDocDate = refDocDate;
+	}
 	
 	public VendorMst getVendorMst() {
 		return vendorMst;
@@ -94,15 +104,7 @@ public class PurchaseOrderHeader implements Serializable {
 	public void setRefDocNo(String refDocNo) {
 		this.refDocNo = refDocNo;
 	}
-	public String getRefDocDate() {
-		return refDocDate;
-	}
-	public void setRefDocDate(String refDocDate) {
-		this.refDocDate = refDocDate;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 
 
 
