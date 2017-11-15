@@ -6,7 +6,7 @@ import com.aits.myerp.model.CustomerMst;
 
 public interface CustomerDao {
 	
-   public List<CustomerMst> getAllCustomer();
+    public List<CustomerMst> getAllCustomer();
 	
 	public boolean addCustomer(CustomerMst customerMst);
 	

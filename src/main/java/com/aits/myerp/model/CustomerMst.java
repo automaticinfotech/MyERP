@@ -31,7 +31,7 @@ public class CustomerMst {
 	private String customerEmail; 
 	
 	@Column
-	private String isAcive;
+	private String isActive;
 
 	public int getCustomerId() {
 		return customerId;
@@ -81,13 +81,14 @@ public class CustomerMst {
 		this.customerEmail = customerEmail;
 	}
 
-	public String getIsAcive() {
-		return isAcive;
+	public String getIsActive() {
+		return isActive;
 	}
 
-	public void setIsAcive(String isAcive) {
-		this.isAcive = isAcive;
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
 	}
+
 	
 	
 

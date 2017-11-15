@@ -19,4 +19,13 @@ public interface appConstant {
 	String GET_MATERIAL_BY_ID = "/getMaterialById";
 	String UPDATE_MATERIAL = "/updateMaterial";
 	String DELETE_MATERIAL = "/deleteMaterial";
+	
+	//Customer Mgmnt
+    String LIST_OF_CUSTOMER = "/listOfCustomer";
+    String CREATE_CUSTOMER = "/createCustomer";
+	String INSERT_CUSTOMER = "/insertCustomer";
+	String GET_CUSTOMER_BY_ID = "/getCustomerById";
+	String UPDATE_CUSTOMER = "/updateCustomer";
+	String DELETE_CUSTOMER = "/deleteCustomer";
+	
 }

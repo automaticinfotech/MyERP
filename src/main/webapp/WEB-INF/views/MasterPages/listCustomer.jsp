@@ -32,38 +32,38 @@
 			
 				<!-- /.box-header -->
 				<div class="box-body">
-				<a href="/MyERP/createVendor"><button type="button" class="btn bg-purple margin">Create New</button></a>
+				<a href="/MyERP/createCustomer"><button type="button" class="btn bg-purple margin">Create New</button></a>
 					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>Vendor ID</th>
-								<th>Vendor Name</th>
-								<th>Vendor Code</th>
+								<th>Customer ID</th>
+								<th>Customer Name</th>
+								<th>Customer Code</th>
 								<th>Address Line 1</th>
 								<th>Address Line 2</th>
-								<th>Vendor Email</th>
-								<th>Vendor Status</th>
+								<th>Customer Email</th>
+								<th>Customer Status</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="listVendor" items="${ listVendor}">
+							<c:forEach var="listCustomer" items="${ listCustomerMst}">
 								<tr>
-									<td>${listVendor.vendorId}</td>
-									<td>${listVendor.vendorName}</td>
-									<td>${listVendor.vendorCode}</td>
-									<td>${listVendor.vendorAddressline1}</td>
-									<td>${listVendor.vendorAddressline2}</td>
-									<td>${listVendor.vendorEmail}</td>
-									<td>${listVendor.isAcive}</td>
+									<td>${listCustomer.customerId}</td>
+									<td>${listCustomer.customerName}</td>
+									<td>${listCustomer.customerCode}</td>
+									<td>${listCustomer.customerAddressline1}</td>
+									<td>${listCustomer.customerAddressline2}</td>
+									<td>${listCustomer.customerEmail}</td>
+									<td>${listCustomer.isActive}</td>
 									
 									<td>
-									<a href="/MyERP/getVendorById?vendorId=${listVendor.vendorId}"><button type="button" class="btn bg-purple margin">Edit</button></a>
+									<a href="/MyERP/getCustomerById?customerId=${listCustomer.customerId}"><button type="button" class="btn bg-purple margin">Edit</button></a>
 									</td>
 									
 									<td>
-									<a href="/MyERP/deleteVendor?vendorId=${listVendor.vendorId}"><button type="button" class="btn bg-purple margin">Delete</button></a>
+									<a href="/MyERP/deleteCustomer?customerId=${listCustomer.customerId}"><button type="button" class="btn bg-purple margin">Delete</button></a>
 									</td>
 									
 								</tr>
@@ -71,13 +71,13 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>Vendor ID</th>
-								<th>Vendor Name</th>
-								<th>Vendor Code</th>
+								<th>Customer ID</th>
+								<th>Customer Name</th>
+								<th>Customer Code</th>
 								<th>Address Line 1</th>
 								<th>Address Line 2</th>
-								<th>Vendor Email</th>
-								<th>Vendor Status</th>
+								<th>Customer Email</th>
+								<th>Customer Status</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>

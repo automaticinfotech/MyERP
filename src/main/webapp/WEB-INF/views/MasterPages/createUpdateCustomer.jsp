@@ -24,27 +24,27 @@
 			<div class="col-md-6">
 				<div class="box-body">
 					<c:choose>
-						    <c:when test="${empty listMaterial}">
-						      <form action="insertMaterial" method="post"  modelAttribute="materialMst">
+						    <c:when test="${empty listCustomerMst}">
+						      <form action="insertCustomer" method="post"  modelAttribute="customerMst">
 									<!-- text input -->
 											<div class="form-group">
-												<label>Material Name</label> <input type="text" class="form-control"
-													placeholder="Enter Material Name..." name="materialName">
+												<label>Customer Name</label> <input type="text" class="form-control"
+													placeholder="Enter customer Name..." name="customerName">
 													
-												<label>Material Code</label> <input type="text" class="form-control"
-													name="materialCode" value="${materialCode}" readonly>	
+												<label>Customer Code</label> <input type="text" class="form-control"
+													placeholder="Enter customer Code..." name="customerCode" value="${customerCode}" readonly>	
 													
-												<label>Material Description</label> <input type="text" class="form-control"
-													placeholder="Enter Material Description..." name="materialDesc">
+												<label>Customer Email</label> <input type="text" class="form-control"
+													placeholder="Enter customer Email..." name="customerEmail">
 													
-												<label>Unite of Measurement</label> <input type="text" class="form-control"
-													placeholder="Enter UOM" name="UOM">
+												<label>CustomerAddressline1</label> <input type="text" class="form-control"
+													placeholder="Enter customerAddressline1..." name="customerAddressline1">
 													
-												<label>is Finish Good</label> <input type="text" class="form-control"
-													placeholder="Enter Finish Good status..." name="isFG">
+												<label>CustomerAddressline2</label> <input type="text" class="form-control"
+													placeholder="Enter customerAddressline2..." name="customerAddressline2">
 													
 												<label>Active Status</label> <input type="text" class="form-control"
-													placeholder="Enter Active..." name="isActive">
+													name="isActive">		
 													
 											</div>		
 																			
@@ -52,33 +52,33 @@
 								</form>
 						    </c:when>
 						    <c:otherwise>
-						      <form action="updateMaterial" method="post"  modelAttribute="materialMst">
+						      <form action="updateCustomer" method="post"  modelAttribute="customerMst">
 									<!-- text input -->
 											<div class="form-group">
 											
 											<c:forEach
-												items="${listMaterial}" var="listMaterial">
+												items="${listCustomerMst}" var="listCustomerMst">
 												
 												<input type="hidden" class="form-control"
-													 name="materialId" value="${listMaterial.materialId}">
+													 name="customerId" value="${listCustomerMst.customerId}">
 												
-												<label>Material Name</label> <input type="text" class="form-control"
-													 name="materialName" value="${listMaterial.materialName}">
+												<label>Customer Name</label> <input type="text" class="form-control"
+													 name="customerName" value="${listCustomerMst.customerName}">
 													
-												<label>Material Code</label> <input type="text" class="form-control"
-													name="materialCode" value="${listMaterial.materialCode}" readonly>	
+												<label>Customer Code</label> <input type="text" class="form-control"
+													name="customerCode" value="${listCustomerMst.customerCode}" readonly>	
 													
-												<label>Material Description</label> <input type="text" class="form-control"
-											        name="materialDesc" value="${listMaterial.materialDesc}">
+												<label>Customer Email</label> <input type="text" class="form-control"
+											        name="customerEmail" value="${listCustomerMst.customerEmail}">
 													
-												<label>Unite of Measurement</label> <input type="text" class="form-control"
-													 name="UOM" value="${listMaterial.UOM}">
+												<label>CustomerAddressline1</label> <input type="text" class="form-control"
+													 name="customerAddressline1" value="${listCustomerMst.customerAddressline1}">
 													
-												<label>is Finish Good</label> <input type="text" class="form-control"
-													name="isFG" value="${listMaterial.isFG}">
+												<label>CustomerAddressline2</label> <input type="text" class="form-control"
+													name="customerAddressline2" value="${listCustomerMst.customerAddressline2}">
 													
 												<label>Active Status</label> <input type="text" class="form-control"
-													name="isActive" value="${listMaterial.isActive}">	
+													name="isActive" value="${listCustomerMst.isActive}">	
 												
 											</c:forEach>
 											</div>		
