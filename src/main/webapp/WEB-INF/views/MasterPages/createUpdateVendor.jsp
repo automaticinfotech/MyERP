@@ -9,8 +9,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/toggle/toggleEffect.css">	
 	
+<script type="text/javascript">	
 	
+	</script>
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -23,6 +27,8 @@
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<div class="box-body">
+				
+				
 					<c:choose>
 						    <c:when test="${empty listVendor}">
 						      <form action="insertVendor" method="post"  modelAttribute="vendor">
@@ -43,9 +49,17 @@
 												<label>vendorAddressline2</label> <input type="text" class="form-control"
 													placeholder="Enter vendorAddressline2..." name="vendorAddressline2">
 													
-												<label>Active Status</label> <input type="text" class="form-control"
-													name="isAcive">		
-													
+												<!-- <label>Active Status</label> <input type="text" class="form-control"
+													name="isAcive"> -->		
+												<label>Active Status</label><br>	
+													<label>Active
+														  <input type="radio" checked="checked" name="isAcive" value="on">
+														  <span class="checkmark"></span>
+														</label>
+														<label>Inactive
+														  <input type="radio" name="isAcive" value="off">
+														  <span class="checkmark"></span>
+													</label>
 											</div>		
 																			
 									<button type="submit" class="btn btn-block btn-primary btn-sm">ADD</button>
@@ -77,8 +91,34 @@
 												<label>vendorAddressline2</label> <input type="text" class="form-control"
 													name="vendorAddressline2" value="${listVendor.vendorAddressline2}">
 													
-												<label>Active Status</label> <input type="text" class="form-control"
-													name="isAcive" value="${listVendor.isAcive}">	
+												<%-- <label>Active Status</label> <input type="text" class="form-control"
+													name="isAcive" value="${listVendor.isAcive}"> --%>
+													
+												<c:choose>
+						    						<c:when test="${listVendor.isAcive eq 'on'}">
+						    							<label>Active Status</label><br>	
+														<label>Active
+															  <input type="radio" checked="checked" name="isAcive" value="on">
+															  <span class="checkmark"></span>
+															</label>
+															<label>Inactive
+															  <input type="radio" name="isAcive" value="off">
+															  <span class="checkmark"></span>
+														</label>
+						    						</c:when>
+						    						<c:otherwise>
+						    							<label>Active Status</label><br>	
+														<label>Active
+															  <input type="radio"  name="isAcive" value="on">
+															  <span class="checkmark"></span>
+															</label>
+															<label>Inactive
+															  <input type="radio" checked="checked" name="isAcive" value="off">
+															  <span class="checkmark"></span>
+														</label>
+						    						</c:otherwise>
+						    					</c:choose>
+												
 												
 											</c:forEach>
 											</div>		

@@ -14,12 +14,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.aits.myerp.constant.appConstant;
 import com.aits.myerp.model.VendorMst;
 import com.aits.myerp.service.VendorServices;
+import com.aits.myerp.util.CodeGenrator;
 
 @Controller
 public class VendorController implements appConstant 
 {
 	@Autowired
 	private VendorServices vendorService; 
+	
+	@Autowired
+	private CodeGenrator codeGenrator;
 	
 	@RequestMapping(value=LIST_OF_VENDOR, method = RequestMethod.GET)
 	public ModelAndView listOfVendor() {
@@ -34,8 +38,7 @@ public class VendorController implements appConstant
 	public ModelAndView createVendor(@ModelAttribute VendorMst vendor) {
 		ModelAndView model = new  ModelAndView();
 		List<VendorMst> listVendor = new ArrayList<VendorMst>();
-		int year = Calendar.getInstance().get(Calendar.YEAR);
-		String vendorCode = year+"/Vo/";
+		String vendorCode = VENDOR_CODE+codeGenrator.getCurrentYear()+codeGenrator.getRandomNumber(9999, 1111);
 		model.addObject("vendorCode", vendorCode);
 		model.addObject("listVendor", listVendor);
 		model.setViewName("MasterPages/createUpdateVendor");
@@ -46,7 +49,7 @@ public class VendorController implements appConstant
 	public ModelAndView insertVendor(@ModelAttribute VendorMst vendor) {
 		
 	
-		vendor.setIsAcive("A");
+		System.out.println("++++++++++++++++++++++++++++"+vendor.getIsAcive());
 		ModelAndView model = new  ModelAndView();
 		if(vendorService.addVendor(vendor))
 		{
@@ -78,6 +81,7 @@ public class VendorController implements appConstant
 	
 	@RequestMapping(value=UPDATE_VENDOR, method = RequestMethod.POST)
 	public ModelAndView updateVendor(@ModelAttribute VendorMst vendor) {
+		
 		ModelAndView model = new  ModelAndView();
 		if(vendorService.updateVendor(vendor))
 		{

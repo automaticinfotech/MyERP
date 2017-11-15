@@ -5,6 +5,7 @@ public interface appConstant {
 	
 	//Prafull
 	//Vendor Mgmnt
+	String VENDOR_CODE = "Vendor/";
 	String LIST_OF_VENDOR = "/listOfVendor";
 	String CREATE_VENDOR = "/createVendor";
 	String INSERT_VENDOR = "/insertVendor";
@@ -13,6 +14,7 @@ public interface appConstant {
 	String DELETE_VENDOR = "/deleteVendor";
 	
 	//Material Mgmnt
+	String MATERIAL_CODE = "Material/";
     String LIST_OF_MATERIAL = "/listOfMaterial";
     String CREATE_MATERIAL = "/createMaterial";
 	String INSERT_MATERIAL = "/insertMaterial";
@@ -21,6 +23,7 @@ public interface appConstant {
 	String DELETE_MATERIAL = "/deleteMaterial";
 	
 	//Customer Mgmnt
+	String CUSTOMER_CODE = "Customer/";
     String LIST_OF_CUSTOMER = "/listOfCustomer";
     String CREATE_CUSTOMER = "/createCustomer";
 	String INSERT_CUSTOMER = "/insertCustomer";

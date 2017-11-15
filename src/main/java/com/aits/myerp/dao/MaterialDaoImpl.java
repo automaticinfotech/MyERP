@@ -24,7 +24,7 @@ public class MaterialDaoImpl implements MaterialDao{
 	
 	@Override
 	public List<MaterialMst> getActiveMaterail() {
-		return sessionFactory.getCurrentSession().createQuery("from MaterialMst where isActive = 'A' ").list();
+		return sessionFactory.getCurrentSession().createQuery("from MaterialMst where isActive = 'on' ").list();
 	}
 
 	@Override

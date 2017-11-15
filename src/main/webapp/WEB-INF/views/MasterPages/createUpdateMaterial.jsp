@@ -40,11 +40,32 @@
 												<label>Unite of Measurement</label> <input type="text" class="form-control"
 													placeholder="Enter UOM" name="UOM">
 													
-												<label>is Finish Good</label> <input type="text" class="form-control"
-													placeholder="Enter Finish Good status..." name="isFG">
+												<!-- <label>is Finish Good</label> <input type="text" class="form-control"
+													placeholder="Enter Finish Good status..." name="isFG"> -->
 													
-												<label>Active Status</label> <input type="text" class="form-control"
-													placeholder="Enter Active..." name="isActive">
+													
+												<label>is Finish Good</label><br>	
+													<label>Active
+														  <input type="radio" checked="checked" name="isFG" value="yes">
+														  <span class="checkmark"></span>
+														</label>
+														<label>Inactive
+														  <input type="radio" name="isFG" value="no">
+														  <span class="checkmark"></span>
+													</label>	
+													
+												<br>	
+												<!-- <label>Active Status</label> <input type="text" class="form-control"
+													placeholder="Enter Active..." name="isActive"> -->
+												<label>Active Status</label><br>	
+													<label>Active
+														  <input type="radio" checked="checked" name="isActive" value="on">
+														  <span class="checkmark"></span>
+														</label>
+														<label>Inactive
+														  <input type="radio" name="isActive" value="off">
+														  <span class="checkmark"></span>
+													</label>	
 													
 											</div>		
 																			
@@ -74,11 +95,63 @@
 												<label>Unite of Measurement</label> <input type="text" class="form-control"
 													 name="UOM" value="${listMaterial.UOM}">
 													
-												<label>is Finish Good</label> <input type="text" class="form-control"
-													name="isFG" value="${listMaterial.isFG}">
+												<%-- <label>is Finish Good</label> <input type="text" class="form-control"
+													name="isFG" value="${listMaterial.isFG}"> --%>
 													
-												<label>Active Status</label> <input type="text" class="form-control"
-													name="isActive" value="${listMaterial.isActive}">	
+												<c:choose>
+						    						<c:when test="${listMaterial.isFG eq 'yes'}">
+						    							<label>is Finish Good</label><br>	
+														<label>Active
+															  <input type="radio" checked="checked" name="isFG" value="yes">
+															  <span class="checkmark"></span>
+															</label>
+															<label>Inactive
+															  <input type="radio" name="isFG" value="off">
+															  <span class="checkmark"></span>
+														</label>
+						    						</c:when>
+						    						<c:otherwise>
+						    							<label>is Finish Good</label><br>	
+														<label>Active
+															  <input type="radio"  name="isActive" value="yes">
+															  <span class="checkmark"></span>
+															</label>
+															<label>Inactive
+															  <input type="radio" checked="checked" name="isFG" value="no">
+															  <span class="checkmark"></span>
+														</label>
+						    						</c:otherwise>
+						    					</c:choose>		
+													
+													
+												<%-- <label>Active Status</label> <input type="text" class="form-control"
+													name="isActive" value="${listMaterial.isActive}"> --%>
+												<br>	
+												<c:choose>
+						    						<c:when test="${listMaterial.isActive eq 'on'}">
+						    							<label>Active Status</label><br>	
+														<label>Active
+															  <input type="radio" checked="checked" name="isActive" value="on">
+															  <span class="checkmark"></span>
+															</label>
+															<label>Inactive
+															  <input type="radio" name="isActive" value="off">
+															  <span class="checkmark"></span>
+														</label>
+						    						</c:when>
+						    						<c:otherwise>
+						    							<label>Active Status</label><br>	
+														<label>Active
+															  <input type="radio"  name="isActive" value="on">
+															  <span class="checkmark"></span>
+															</label>
+															<label>Inactive
+															  <input type="radio" checked="checked" name="isActive" value="off">
+															  <span class="checkmark"></span>
+														</label>
+						    						</c:otherwise>
+						    					</c:choose>	
+														
 												
 											</c:forEach>
 											</div>		

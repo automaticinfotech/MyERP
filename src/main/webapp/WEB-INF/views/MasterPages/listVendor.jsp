@@ -33,7 +33,9 @@
 				<!-- /.box-header -->
 				<div class="box-body">
 				<a href="/MyERP/createVendor"><button type="button" class="btn bg-purple margin">Create New</button></a>
-					<table id="example1" class="table table-bordered table-striped">
+				<c:choose>
+				 <c:when test="${!empty listVendor}">
+				 	<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
 								<th>Vendor ID</th>
@@ -83,6 +85,13 @@
 							</tr>
 						</tfoot>
 					</table>
+				 </c:when>
+				 <c:otherwise>
+				 	<h5>Sorry, No record found</h5>		    
+				 </c:otherwise>
+				</c:choose>
+				
+					
 				</div>
 				<!-- /.box-body -->
 			</div>

@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
-	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/toggle/toggleEffect.css">		
 	
 
 </head>
@@ -43,8 +44,18 @@
 												<label>CustomerAddressline2</label> <input type="text" class="form-control"
 													placeholder="Enter customerAddressline2..." name="customerAddressline2">
 													
-												<label>Active Status</label> <input type="text" class="form-control"
-													name="isActive">		
+												<!-- <label>Active Status</label> <input type="text" class="form-control"
+													name="isActive"> -->
+													
+												<label>Active Status</label><br>	
+													<label>Active
+														  <input type="radio" checked="checked" name="isActive" value="on">
+														  <span class="checkmark"></span>
+														</label>
+														<label>Inactive
+														  <input type="radio" name="isActive" value="off">
+														  <span class="checkmark"></span>
+													</label>			
 													
 											</div>		
 																			
@@ -77,8 +88,33 @@
 												<label>CustomerAddressline2</label> <input type="text" class="form-control"
 													name="customerAddressline2" value="${listCustomerMst.customerAddressline2}">
 													
-												<label>Active Status</label> <input type="text" class="form-control"
-													name="isActive" value="${listCustomerMst.isActive}">	
+												<%-- <label>Active Status</label> <input type="text" class="form-control"
+													name="isActive" value="${listCustomerMst.isActive}"> --%>
+													
+												<c:choose>
+						    						<c:when test="${listCustomerMst.isActive eq 'on'}">
+						    							<label>Active Status</label><br>	
+														<label>Active
+															  <input type="radio" checked="checked" name="isActive" value="on">
+															  <span class="checkmark"></span>
+															</label>
+															<label>Inactive
+															  <input type="radio" name="isActive" value="off">
+															  <span class="checkmark"></span>
+														</label>
+						    						</c:when>
+						    						<c:otherwise>
+						    							<label>Active Status</label><br>	
+														<label>Active
+															  <input type="radio"  name="isActive" value="on">
+															  <span class="checkmark"></span>
+															</label>
+															<label>Inactive
+															  <input type="radio" checked="checked" name="isActive" value="off">
+															  <span class="checkmark"></span>
+														</label>
+						    						</c:otherwise>
+						    					</c:choose>	
 												
 											</c:forEach>
 											</div>		

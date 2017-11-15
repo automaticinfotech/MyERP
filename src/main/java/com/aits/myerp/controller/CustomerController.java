@@ -3,6 +3,7 @@ package com.aits.myerp.controller;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,12 +17,16 @@ import com.aits.myerp.model.CustomerMst;
 import com.aits.myerp.model.VendorMst;
 import com.aits.myerp.service.CustomerService;
 import com.aits.myerp.service.VendorServices;
+import com.aits.myerp.util.CodeGenrator;
 
 @Controller
 public class CustomerController implements appConstant{
 	
 	@Autowired
 	private CustomerService customerService; 
+	
+	@Autowired
+	private CodeGenrator codeGenrator;
 	
 	@RequestMapping(value=LIST_OF_CUSTOMER, method = RequestMethod.GET)
 	public ModelAndView listOfVendor() {
@@ -36,8 +41,7 @@ public class CustomerController implements appConstant{
 	public ModelAndView createCustomer(@ModelAttribute CustomerMst customerMst) {
 		ModelAndView model = new  ModelAndView();
 		List<CustomerMst> listCustomerMst = new ArrayList<CustomerMst>();
-		int year = Calendar.getInstance().get(Calendar.YEAR);
-		String customerCode = year+"/Cust/";
+		String customerCode = CUSTOMER_CODE+codeGenrator.getCurrentYear()+codeGenrator.getRandomNumber(9999, 1111);
 		model.addObject("customerCode", customerCode);
 		model.addObject("listCustomerMst", listCustomerMst);
 		model.setViewName("MasterPages/createUpdateCustomer");
@@ -48,7 +52,6 @@ public class CustomerController implements appConstant{
 	public ModelAndView insertCustomer(@ModelAttribute CustomerMst customerMst) {
 		
 	
-		customerMst.setIsActive("A");
 		ModelAndView model = new  ModelAndView();
 		if(customerService.addCustomer(customerMst))
 		{

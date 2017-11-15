@@ -16,12 +16,16 @@ import com.aits.myerp.model.MaterialMst;
 import com.aits.myerp.model.VendorMst;
 import com.aits.myerp.service.MaterialService;
 import com.aits.myerp.service.VendorServices;
+import com.aits.myerp.util.CodeGenrator;
 
 @Controller
 public class MaterialController implements appConstant {
 	
 	@Autowired
 	private MaterialService materialService; 
+	
+	@Autowired
+	private CodeGenrator codeGenrator;
 	
 	@RequestMapping(value=LIST_OF_MATERIAL, method = RequestMethod.GET)
 	public ModelAndView listOfMaterial() {
@@ -37,7 +41,7 @@ public class MaterialController implements appConstant {
 		ModelAndView model = new  ModelAndView();
 		List<MaterialMst> listMaterial = new ArrayList<MaterialMst>();
 		int year = Calendar.getInstance().get(Calendar.YEAR);
-		String materialCode = year+"/Mat/";
+		String materialCode = VENDOR_CODE+codeGenrator.getCurrentYear()+codeGenrator.getRandomNumber(9999, 1111);
 		model.addObject("materialCode", materialCode);
 		model.addObject("listMaterial", listMaterial);
 		model.setViewName("MasterPages/createUpdateMaterial");
