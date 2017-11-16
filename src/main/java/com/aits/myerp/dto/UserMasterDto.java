@@ -1,5 +1,7 @@
 package com.aits.myerp.dto;
 
+import java.util.Arrays;
+
 public class UserMasterDto {
 
 	private Integer userid;
@@ -44,5 +46,10 @@ public class UserMasterDto {
 	}
 	public void setRoles(String[] roles) {
 		this.roles = roles;
+	}
+	@Override
+	public String toString() {
+		return "UserMasterDto [userid=" + userid + ", loginid=" + loginid + ", password=" + password + ", email="
+				+ email + ", isActive=" + isActive + ", roles=" + Arrays.toString(roles) + "]";
 	}
 }

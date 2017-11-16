@@ -5,68 +5,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 
 @Entity
 public class UserAuthorizationModel {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer autorizationId;
-	@OneToOne
-	private UserMasterModel userMasterModel;
-	@OneToOne
-	private MenuMasterModel menuMasterModel;
+	private Integer authorizationId;
 	@Column
-	private Boolean isCreate;
+	private String loginId;
 	@Column
-	private Boolean isSelect;
-	@Column
-	private Boolean isUpdate;
-	@Column
-	private Boolean isDelete;
+	private String role;
 	
-	public Integer getAutorizationId() {
-		return autorizationId;
+	public Integer getAuthorizationId() {
+		return authorizationId;
 	}
-	public void setAutorizationId(Integer autorizationId) {
-		this.autorizationId = autorizationId;
+	public void setAuthorizationId(Integer authorizationId) {
+		this.authorizationId = authorizationId;
 	}
-	public UserMasterModel getUserMasterModel() {
-		return userMasterModel;
+	public String getLoginId() {
+		return loginId;
 	}
-	public void setUserMasterModel(UserMasterModel userMasterModel) {
-		this.userMasterModel = userMasterModel;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
-	public MenuMasterModel getMenuMasterModel() {
-		return menuMasterModel;
+	public String getRole() {
+		return role;
 	}
-	public void setMenuMasterModel(MenuMasterModel menuMasterModel) {
-		this.menuMasterModel = menuMasterModel;
-	}
-	public Boolean getIsCreate() {
-		return isCreate;
-	}
-	public void setIsCreate(Boolean isCreate) {
-		this.isCreate = isCreate;
-	}
-	public Boolean getIsSelect() {
-		return isSelect;
-	}
-	public void setIsSelect(Boolean isSelect) {
-		this.isSelect = isSelect;
-	}
-	public Boolean getIsUpdate() {
-		return isUpdate;
-	}
-	public void setIsUpdate(Boolean isUpdate) {
-		this.isUpdate = isUpdate;
-	}
-	public Boolean getIsDelete() {
-		return isDelete;
-	}
-	public void setIsDelete(Boolean isDelete) {
-		this.isDelete = isDelete;
+	public void setRole(String role) {
+		this.role = role;
 	}
 }
