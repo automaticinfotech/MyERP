@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,6 +25,7 @@
 			<div class="col-md-6">
 			<font color="red"><h2>${message}</h2></font>
 				<div class="box-body">
+							<sec:authorize access="hasAnyRole('ROLE_IsAdministrator','ROLE_MenuIsInsert','ROLE_MenuIsUpdate','ROLE_MenuIsDelete')">
 						      <form:form action="dooperation" method="get" commandName="menuMasterDto">
 									<!-- text input -->
 											<div class="form-group">
@@ -32,11 +34,11 @@
 												<label>Is Active</label> 
 												<form:checkbox path="isActive"/>
 											</div>		
-																			
-									<button type="submit" name="operation" value="insert" class="btn btn-primary btn-sm">Insert</button>
-									<button type="submit" name="operation" value="update" class="btn btn-primary btn-sm">Update</button>
-									<button type="submit" name="operation" value="delete" class="btn btn-primary btn-sm">Delete</button>
+								<sec:authorize access="hasAnyRole('ROLE_IsAdministrator','ROLE_MenuIsInsert')"><button type="submit" name="operation" value="insert" class="btn btn-primary btn-sm">Insert</button></sec:authorize>
+								<sec:authorize access="hasAnyRole('ROLE_IsAdministrator','ROLE_MenuIsUpdate')"><button type="submit" name="operation" value="update" class="btn btn-primary btn-sm">Update</button></sec:authorize>	
+								<sec:authorize access="hasAnyRole('ROLE_IsAdministrator','ROLE_MenuIsDelete')"><button type="submit" name="operation" value="delete" class="btn btn-primary btn-sm">Delete</button></sec:authorize>
 								</form:form>
+								</sec:authorize>											
 				</div>
 			</div>
 			<div class="col-md-3"></div>
@@ -73,11 +75,13 @@
 				</div>
 				<!-- /.box-body -->
 			</div>
+			<sec:authorize access="hasAnyRole('ROLE_IsAdministrator','ROLE_MenuIsInsert','ROLE_MenuIsUpdate','ROLE_MenuIsDelete')">
 			<table align="right">
 				<tr>
 					<td> <input type="submit" value="Submit"> </td>
 				</tr>
 			</table><br><br>
+			</sec:authorize>
 			</form>
 		</div>
 
