@@ -30,7 +30,7 @@
 	<label>Password:</label> <form:input path="password" class="form-control"/>
 	<label>E-mail:</label> <form:input path="email" class="form-control"/>
 	<label>Is Active:</label> <form:checkbox path="isActive" value="isActive"/><br>
-	<label>Is Administrator:</label> <form:checkbox path="roles" value="isAdministrator"/>
+	<label>Is Administrator:</label> <form:checkbox path="roles" value="ROLE_isAdministrator"/>
 	
 
 <table border="2">
@@ -44,10 +44,10 @@
 	<c:forEach items="${menuMasterList}" var="currentObject">
 	<tr>
 		<td><label>${currentObject.getMenuName()}</label></td> 
-		<td><form:checkbox path="roles" value="${currentObject.getMenuName()}isCreate"/></td>
-		<td><form:checkbox path="roles" value="${currentObject.getMenuName()}isSelect"/></td>
-		<td><form:checkbox path="roles" value="${currentObject.getMenuName()}isUpdate"/></td>
-		<td><form:checkbox path="roles" value="${currentObject.getMenuName()}isDelete"/></td>
+		<td><form:checkbox path="roles" value="ROLE_${currentObject.getMenuName()}IsCreate"/></td>
+		<td><form:checkbox path="roles" value="ROLE_${currentObject.getMenuName()}IsSelect"/></td>
+		<td><form:checkbox path="roles" value="ROLE_${currentObject.getMenuName()}IsUpdate"/></td>
+		<td><form:checkbox path="roles" value="ROLE_${currentObject.getMenuName()}IsDelete"/></td>
 	</tr>
 	</c:forEach>
 </table>

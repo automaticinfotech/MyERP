@@ -3,6 +3,7 @@ package com.aits.myerp.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -71,6 +72,7 @@ public class MenuMasterController {
 		return "admin/menu";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_IsAdministrator','ROLE_MenuIsSelect')")
 	@RequestMapping(value="/menu", method = RequestMethod.GET)
 	public String menuPage(ModelMap modelMap) {
 		menuMasterDtosList = menuMasterService.getMenuMasterList();
