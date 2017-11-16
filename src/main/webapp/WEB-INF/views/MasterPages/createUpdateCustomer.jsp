@@ -51,7 +51,7 @@
 														  <span class="checkmark"></span>
 														</label>
 														<label>Inactive
-														  <input type="radio" name="isActive" value="inactive">
+														  <input type="radio" name="isActive" value="Inactive">
 														  <span class="checkmark"></span>
 													</label>			
 													
@@ -98,7 +98,7 @@
 															  <span class="checkmark"></span>
 															</label>
 															<label>Inactive
-															  <input type="radio" name="isActive" value="inactive">
+															  <input type="radio" name="isActive" value="Inactive">
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:when>
@@ -109,11 +109,11 @@
 															  <span class="checkmark"></span>
 															</label>
 															<label>Inactive
-															  <input type="radio" checked="checked" name="isActive" value="inactive">
+															  <input type="radio" checked="checked" name="isActive" value="Inactive">
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:otherwise>
-						    					</c:choose>	
+						    					</c:choose>	 
 												
 											</c:forEach>
 											</div>		

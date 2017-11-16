@@ -115,7 +115,7 @@
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:otherwise>
-						    					</c:choose>
+						    					</c:choose> 
 												
 												
 											</c:forEach>
