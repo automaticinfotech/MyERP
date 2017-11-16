@@ -19,10 +19,28 @@ public class UserMasterDaoImpl implements UserMasterDao{
 	
 	@Override
 	public Boolean createUser(UserMasterModel userMasterModel) {
-		Session session=sessionFactory.openSession();
+		Session session=sessionFactory.openSession();		
 		try {
 			Transaction transaction=session.beginTransaction();
 			session.saveOrUpdate(userMasterModel);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return false;
+		}finally {
+			session.clear();
+			session.close();
+		}
+	}
+	
+	@Override
+	public Boolean removeUser(String loginId) {
+		Session session=sessionFactory.openSession();
+		try {
+			Transaction transaction=session.beginTransaction();
+			UserMasterModel currentUserMasterModel = getUserByLoginId(loginId);
+			session.delete(currentUserMasterModel);
 			transaction.commit();
 			return true;
 		} catch (Exception e) {
@@ -37,6 +55,11 @@ public class UserMasterDaoImpl implements UserMasterDao{
 	@Override
 	public List<UserMasterModel> getUserDetails() {
 		return sessionFactory.getCurrentSession().createQuery("from UserMasterModel").list();
+	}
+
+	@Override
+	public UserMasterModel getUserByLoginId(String loginId) {
+		return (UserMasterModel) sessionFactory.getCurrentSession().createQuery("from UserMasterModel where loginid=:loginid").setString("loginid", loginId).uniqueResult();
 	}
 
 }

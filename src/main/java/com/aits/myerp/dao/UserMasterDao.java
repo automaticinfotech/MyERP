@@ -8,4 +8,6 @@ public interface UserMasterDao {
 	
 	public Boolean createUser(UserMasterModel userMasterModel);
 	public List<UserMasterModel> getUserDetails();
+	public UserMasterModel getUserByLoginId(String loginId);
+	public Boolean removeUser(String loginId);
 }

@@ -26,6 +26,7 @@ public class UserMasterServiceImpl implements UserMasterService{
 	@Override
 	public String createUser(UserMasterDto userMasterDto) {
 		UserMasterModel userMasterModel=new UserMasterModel();
+		userMasterModel.setUserid(userMasterDto.getUserid());
 		userMasterModel.setLoginid(userMasterDto.getLoginid());
 		userMasterModel.setPassword(userMasterDto.getPassword());
 		userMasterModel.setEmail(userMasterDto.getEmail());
@@ -50,24 +51,53 @@ public class UserMasterServiceImpl implements UserMasterService{
 		List<UserMasterModel> userMasterModelList = userMasterDao.getUserDetails();
 		List<UserMasterDto> userMasterDtoList=new ArrayList<>();
 		for(UserMasterModel currentUserMasterModel : userMasterModelList){
-			UserMasterDto userMasterDto=new UserMasterDto();
-			userMasterDto.setUserid(currentUserMasterModel.getUserid());
-			userMasterDto.setLoginid(currentUserMasterModel.getLoginid());
-			userMasterDto.setEmail(currentUserMasterModel.getEmail());
-			userMasterDto.setIsActive(currentUserMasterModel.getIsActive());
-			List<UserAuthorizationModel> userAuthorizationModelList = userAuthorizationDao.getUserAuthorizationDetails(currentUserMasterModel.getLoginid());
-			String[] roles=new String[userAuthorizationModelList.size()];
-			int index=0;
-			for(UserAuthorizationModel currentRole : userAuthorizationModelList){
-				roles[index++]=currentRole.getRole();
-			}
-			userMasterDto.setRoles(roles);
+			UserMasterDto userMasterDto = userMasterDtoPopulator(currentUserMasterModel);
 			userMasterDtoList.add(userMasterDto);
 		}
-		for(UserMasterDto dto:userMasterDtoList){
-			System.out.println(dto);
-		}
 		return userMasterDtoList;
+	}
+
+	private UserMasterDto userMasterDtoPopulator(UserMasterModel currentUserMasterModel) {
+		UserMasterDto userMasterDto=new UserMasterDto();
+		userMasterDto.setUserid(currentUserMasterModel.getUserid());
+		userMasterDto.setLoginid(currentUserMasterModel.getLoginid());
+		userMasterDto.setEmail(currentUserMasterModel.getEmail());
+		userMasterDto.setIsActive(currentUserMasterModel.getIsActive());
+		List<UserAuthorizationModel> userAuthorizationModelList = userAuthorizationDao.getUserAuthorizationDetails(currentUserMasterModel.getLoginid());
+		String[] roles=new String[userAuthorizationModelList.size()];
+		int index=0;
+		for(UserAuthorizationModel currentRole : userAuthorizationModelList){
+			roles[index++]=currentRole.getRole();
+		}
+		userMasterDto.setRoles(roles);
+		return userMasterDto;
+	}
+
+	@Override
+	public UserMasterDto getUserByLoginId(String loginId) {
+		UserMasterModel currentUserMasterModel = userMasterDao.getUserByLoginId(loginId);
+		//List<UserAuthorizationModel> userAuthorizationModelList = userAuthorizationDao.getUserAuthorizationDetails(currentUserMasterModel.getLoginid());
+		UserMasterDto userMasterDto = userMasterDtoPopulator(currentUserMasterModel);
+		/*UserMasterDto userMasterDto=new UserMasterDto();
+		userMasterDto.setUserid(userMasterModel.getUserid());
+		userMasterDto.setLoginid(userMasterModel.getLoginid());
+		userMasterDto.setEmail(userMasterModel.getEmail());
+		userMasterDto.setIsActive(userMasterModel.getIsActive());
+		String[] roles=new String[userAuthorizationModelList.size()];
+		int index=0;
+		for(UserAuthorizationModel currentRole : userAuthorizationModelList){
+			roles[index++]=currentRole.getRole();
+		}
+		userMasterDto.setRoles(roles);*/
+		return userMasterDto;
+	}
+
+	@Override
+	public String deleteUserByLoginId(String loginId) {
+		if(userMasterDao.removeUser(loginId))
+			if(userAuthorizationDao.removeAuthorities(loginId)>0)
+				return "User Deleted";
+		return "User Deletion Failed";
 	}
 
 }

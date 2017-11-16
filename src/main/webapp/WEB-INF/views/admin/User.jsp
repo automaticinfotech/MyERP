@@ -9,8 +9,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
-	
-	
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -22,6 +20,7 @@
 
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
+				<font color="red"><h2>${message}</h2></font>
 				<div class="box-body">
 						      
 				</div>
@@ -30,23 +29,26 @@
 			<div>
 				<!-- /.box-header -->
 				<div class="box-body">
+				<a href="/MyERP/createUser"><button type="button" class="btn bg-purple margin">Create New</button></a>
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>Login Id</th>
 									<th>E-mail</th>
 									<th>Status</th>
+									<th>Delete</th>
 								</tr>
 							</thead>
 							<tbody>
 							<c:forEach items="${userMasterList}" var="currentObject" varStatus="loop">
 								<tr>
-									<td><a href="updateUser?index=${loop.index}">${currentObject.getLoginid()}</a></td>
+									<td><a href="updateUser?loginId=${currentObject.getLoginid()}">${currentObject.getLoginid()}</a></td>
 									<td>${currentObject.getEmail()}</td>
 									<td><c:choose>
 											<c:when test="${currentObject.getIsActive()}">Active</c:when>
 											<c:otherwise>Inactive</c:otherwise>
 										</c:choose></td>
+									<td><a href="deleteUser?loginId=${currentObject.getLoginid()}">Delete</a></td>									
 								</tr>
 							</c:forEach>
 						</tbody>

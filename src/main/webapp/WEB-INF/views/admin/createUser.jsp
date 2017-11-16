@@ -25,6 +25,7 @@
 			<font color="red"><h2>${message}</h2></font>
 				<div class="box-body">
 						      <form:form action="createUser" method="post" commandName="userMasterDto">
+						      <form:hidden path="userid" />
 	<label>Login ID:</label> <form:input path="loginid" class="form-control"/>
 	<label>Password:</label> <form:input path="password" class="form-control"/>
 	<label>E-mail:</label> <form:input path="email" class="form-control"/>

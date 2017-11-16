@@ -34,6 +34,24 @@ public class UserAuthorizationDaoImpl implements UserAuthorizationDao{
 			session.close();
 		}
 	}
+	
+	@Override
+	public Integer removeAuthorities(String loginId) {
+		Session session = sessionFactory.openSession();
+		Integer affectedRows = 0;
+		try {
+			Transaction transaction= session.beginTransaction();
+			affectedRows = session.createQuery("delete UserAuthorizationModel where loginId=:loginId").setString("loginId", loginId).executeUpdate();	
+			transaction.commit();
+			return affectedRows;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return affectedRows;
+		}finally {
+			session.clear();
+			session.close();
+		}
+	}
 
 	@Override
 	public List<UserAuthorizationModel> getUserAuthorizationDetails(String LoginId) {

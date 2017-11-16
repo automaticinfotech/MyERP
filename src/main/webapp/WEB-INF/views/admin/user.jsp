@@ -24,6 +24,7 @@
 			<div class="col-md-6">
 			<font color="red"><h2>${message}</h2></font>
 				<div class="box-body">
+				<a href="/MyERP/createUser"><button type="button" class="btn bg-purple margin">Create New</button></a>
 						      <form:form action="createUser" method="post" commandName="userMasterDto">
 	<label>Login ID:</label> <form:input path="loginid" class="form-control"/>
 	<label>Password:</label> <form:input path="password" class="form-control"/>
