@@ -47,26 +47,35 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/css/toggleswitch.css">
 <script>
-function myFunction() {
-	 var id = document.getElementById("myCheck").value;     
-	    if(id == 'A'){
-	    	document.getElementById("myCheck").value = "I";
-	        var y = document.getElementById("myCheck").value;
-	    }else {
-	    	document.getElementById("myCheck").value = "A";
-	        var y = document.getElementById("myCheck").value;
-	    }
-  }
-  
-function deleteConform(projectName){
-	var decision=confirm("Project '"+projectName+"'  may contains multiple wings\nDo you want to Delete?");
-	 if(decision){
-	    	return true;
-	    }
-	    else{
-	    	return false;	
-	    }
-}
+	function myFunction() {
+		var id = document.getElementById("myCheck").value;
+		if (id == 'A') {
+			document.getElementById("myCheck").value = "I";
+			var y = document.getElementById("myCheck").value;
+		} else {
+			document.getElementById("myCheck").value = "A";
+			var y = document.getElementById("myCheck").value;
+		}
+	}
+
+	function deleteConform(projectName) {
+		var decision = confirm("Project '" + projectName
+				+ "'  may contains multiple wings\nDo you want to Delete?");
+		if (decision) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	function Clear()
+	{    
+	   document.getElementById("textbox1").value= "";
+	   document.getElementById("textbox2").value= "";
+	   document.getElementById("textbox3").value= "";
+	   document.getElementById("textbox4").value= "";
+	}
+	
 </script>
 <style>
 div.panel-body {
@@ -125,10 +134,26 @@ div.panel-body {
 									</div>
 									<div class="col-md-5">
 										<label>Ref Document No</label>
-										<form:input path="purchaseOrderHeader.refDocNo"
+										<%-- <form:input path=""
 											class="form-control" placeholder="Ref Document No ..."
 											title="Enter alphanumeric only" required="required"
-											name="ProjectName" />
+											name="ProjectName" /> --%>
+
+										<form:select path="purchaseOrderHeader.refDocNo"
+											class="form-control" placeholder="Ref Document No ..."
+											title="Enter alphanumeric only" required="required" name="">
+											<form:option value="0">--------Select-------</form:option>
+
+											<form:option value="SO/2017/0000">SO/2017/0000</form:option>
+											
+										
+											<c:forEach items="${salesOrderDocumentNoList}" var="soDoNo"> 
+                                                   <form:option
+													value="${soDoNo.sodocumentNumber}">${soDoNo.sodocumentNumber}</form:option>
+
+											</c:forEach>
+										</form:select>
+
 									</div>
 
 								</div>
@@ -138,15 +163,17 @@ div.panel-body {
 										<label>Document Date</label>
 										<form:input path="purchaseOrderHeader.documentDate"
 											class="form-control" placeholder="Document Date..."
-											title="Enter alphanumeric only" required="required" name="" type="date" />
-											
+											title="Enter alphanumeric only" required="required" name=""
+											type="date" />
+
 									</div>
 
 									<div class="col-md-5">
 										<label>Ref Document Date</label>
 										<form:input path="purchaseOrderHeader.refDocDate"
 											class="form-control" placeholder="Ref Document Date..."
-											title="Enter alphanumeric only" required="required" name="" type="date" />
+											title="Enter alphanumeric only" required="required" name=""
+											type="date" />
 									</div>
 								</div>
 
@@ -219,7 +246,7 @@ div.panel-body {
 
 										<form:input path="quantity" class="form-control"
 											placeholder="Quantity..." title="Enter alphanumeric only"
-											required="required" name="" />
+											required="required" />
 
 									</div>
 
@@ -228,7 +255,7 @@ div.panel-body {
 
 										<form:input path="rate" class="form-control"
 											placeholder="Rate..." title="Enter alphanumeric only"
-											required="required" name="" />
+											required="required"  />
 
 
 									</div>
@@ -246,7 +273,7 @@ div.panel-body {
 										<form:input path="expDeliveryDate" class="form-control"
 											placeholder="EXP Delivery Date..."
 											title="Enter alphanumeric only" required="required"
-											name="ProjectName" type="date" />
+											name="ProjectName" type="date" onClick="Clear();" id="textbox3"/>
 
 
 									</div>
@@ -280,10 +307,10 @@ div.panel-body {
 
 
 
-							<div align="right" class="panel-footer">
+							<div align="center" class="panel-footer">
 								<button type="submit" class="btn bg-blue margin">Insert</button>
-								<button type="reset" class="btn bg-blue margin">Update</button>
-								<button type="reset" class="btn bg-blue margin">Remove</button>
+							<!-- 	<button type="reset" class="btn bg-blue margin">Update</button>
+								<button type="reset" class="btn bg-blue margin">Remove</button>  -->
 							</div>
 						</div>
 
@@ -305,11 +332,11 @@ div.panel-body {
 									style="background-color: white;">
 									<thead>
 										<tr>
+											<th></th>
 											<th>Material ID</th>
-											<th>Vender ID</th>
-											
+
 											<th>Quantity</th>
-											
+
 											<th>Rate</th>
 											<th>Amount</th>
 											<th>Exp. Delivery Date</th>
@@ -321,16 +348,19 @@ div.panel-body {
 										<c:forEach items="${purchaseOrderDetailsList}"
 											var="purchaseOrderDetails">
 											<tr>
+												<td></td>
 												<td>${purchaseOrderDetails.materialMst.materialId}</td>
-												<td></td>
-												
-												<td>${purchaseOrderDetails.quantity}</td>
-												
+
 												<td>${purchaseOrderDetails.rate}</td>
-												<td></td>
+												<td>${purchaseOrderDetails.quantity}</td>
+
+
+												<td>${purchaseOrderDetails.rate * purchaseOrderDetails.quantity}
+
+												</td>
 												<td>${purchaseOrderDetails.expDeliveryDate}</td>
 												<td>${purchaseOrderDetails.notes}</td>
-												
+
 
 												<!-- <td><a href=""> <span
 														class="glyphicon glyphicon-pencil"></span>
@@ -357,9 +387,7 @@ div.panel-body {
 									<thead>
 										<tr>
 											<th>Material ID</th>
-											
 											<th>Quantity</th>
-											
 											<th>Rate</th>
 											<th>Amount</th>
 											<th>Exp. Delivery Date</th>
@@ -372,9 +400,9 @@ div.panel-body {
 								</table>
 							</c:otherwise>
 						</c:choose>
-						<div align="right">
-							<button type="submit" class="btn bg-blue margin">Submit</button>
-							<button type="reset" class="btn bg-blue margin">Cancel</button>
+						<div align="center">
+							<a href="savePurchOrd"><button class="btn bg-blue margin">Save</button></a>
+							<!-- <button type="reset" class="btn bg-blue margin">Cancel</button> -->
 						</div>
 
 					</div>
@@ -424,14 +452,18 @@ div.panel-body {
 
 
 		<script>
-			function updateActiveStatus(id,name,status) {
-				var data = {"projectId":id,"projectName":name, "projectIsActive": status} 
-				
-				 $.ajax({
+			function updateActiveStatus(id, name, status) {
+				var data = {
+					"projectId" : id,
+					"projectName" : name,
+					"projectIsActive" : status
+				}
+
+				$.ajax({
 					type : "POST",
 					url : "/BuildingManagement/editCategoryMasterStatus",
 					datatype : "application/json",
-					contentType: "application/json; charset=utf-8",
+					contentType : "application/json; charset=utf-8",
 					data : JSON.stringify(data),
 					timeout : 100000,
 					success : function(data) {
@@ -444,18 +476,19 @@ div.panel-body {
 						console.log("DONE");
 					}
 				});
-			    
+
 			};
-			</script>
+		</script>
 		<script>
-			$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
-		    	$("#success-alert").slideUp(500);
+			$("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+				$("#success-alert").slideUp(500);
 			});
 		</script>
 		<script>
-			$("#addProjectFormId").fadeTo(200000, 50000).slideDown(50000, function(){
-		    	$("#addProjectFormId").slideDown(50000);
-			});
+			$("#addProjectFormId").fadeTo(200000, 50000).slideDown(50000,
+					function() {
+						$("#addProjectFormId").slideDown(50000);
+					});
 		</script>
 
 	</div>

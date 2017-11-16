@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Bal Developer|Add Project</title>
+<title>My ERP | All Purchase Orders</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
 
@@ -47,26 +47,26 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/css/toggleswitch.css">
 <script>
-function myFunction() {
-	 var id = document.getElementById("myCheck").value;     
-	    if(id == 'A'){
-	    	document.getElementById("myCheck").value = "I";
-	        var y = document.getElementById("myCheck").value;
-	    }else {
-	    	document.getElementById("myCheck").value = "A";
-	        var y = document.getElementById("myCheck").value;
-	    }
-  }
-  
-function deleteConform(projectName){
-	var decision=confirm("Project '"+projectName+"'  may contains multiple wings\nDo you want to Delete?");
-	 if(decision){
-	    	return true;
-	    }
-	    else{
-	    	return false;	
-	    }
-}
+	function myFunction() {
+		var id = document.getElementById("myCheck").value;
+		if (id == 'A') {
+			document.getElementById("myCheck").value = "I";
+			var y = document.getElementById("myCheck").value;
+		} else {
+			document.getElementById("myCheck").value = "A";
+			var y = document.getElementById("myCheck").value;
+		}
+	}
+
+	function deleteConform(projectName) {
+		var decision = confirm("Project '" + projectName
+				+ "'  may contains multiple wings\nDo you want to Delete?");
+		if (decision) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 </script>
 <style>
 div.panel-body {
@@ -100,98 +100,57 @@ div.panel-body {
 
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<div> 
-				
-									</div>
+				<div></div>
 			</div>
 			<div class="col-md-1"></div>
 
 			<div>
 				<div class="box-body">
 					<div>
-					 <a href="newPurchaseOrder"><button type="submit" class="btn btn-success btn-sm">Create New Purchase Order</button></a>
+						<a href="newPurchaseOrder"><button type="submit"
+								class="btn btn-success btn-sm">Create New Purchase
+								Order</button></a>
 						<hr>
-						<c:choose>
-							<c:when
-								test="${!empty ProjectMasterDtoResponse.projectMasterList}">
-								<table id="example1"
-									class="table table-responsive table-bordered table-hover"
-									style="background-color: white;">
-									<thead>
-										<tr>
-											<th>Document No</th>
-											<th>Document Date</th>
-											<th>Vender code</th>
-											<th>Ref Doc No</th>
-											<th>Ref Doc Date</th>
-											<th>Material</th>
-											<th>Print</th>
-											<th>Delete</th>
+						<table id="example1"
+							class="table table-responsive table-bordered table-hover"
+							style="background-color: white;">
+							<thead>
+								<tr>
+									<th>Document No</th>
+									<th>Document Date</th>
+									<th>Vender</th>
+									<th>Material</th>
+									<th>Quantity</th>
+									<th>Rate</th>
+									<th>Amount</th>
+									<th>Ref Doc No</th>
+									<th>Ref Doc Date</th>
+									<th>Print</th>
+									<th>Delete</th>
 
-										</tr>
-									</thead>
-									<tbody>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${purchaseDetailsList}" var="poDetails">
 
-										<c:forEach
-											items="${ProjectMasterDtoResponse.projectMasterList}"
-											var="projectList">
-											<tr>
-												<td>${projectList.projectName}</td>
-												<td><c:choose>
-														<c:when test="${projectList.projectIsActive eq 'I'}">
-															<label class="switch"> <input type="checkbox"
-																onchange="updateActiveStatus(${projectList.projectId},'${projectList.projectName}','A')">
-																<span class="slider round"></span>
-															</label>
-														</c:when>
-														<c:otherwise>
-															<label class="switch"> <input type="checkbox"
-																onchange="updateActiveStatus(${projectList.projectId},'${projectList.projectName}','I')"
-																checked> <span class="slider round"></span>
-															</label>
-														</c:otherwise>
-													</c:choose></td>
+									<tr>
+										<td>${poDetails.purchaseOrderHeader.documentNo}</td>
+										<td>${poDetails.purchaseOrderHeader.documentDate}</td>
+										<td>${poDetails.purchaseOrderHeader.vendorMst.vendorName}</td>
+										<td>${poDetails.materialMst.materialName}</td>
+										<td>${poDetails.quantity}</td>
+                                        <td>${poDetails.rate}</td>
+                                        <td>${poDetails.rate * poDetails.quantity}</td>
+										<td>${poDetails.purchaseOrderHeader.refDocNo}</td>
+										<td>${poDetails.purchaseOrderHeader.refDocDate}</td>
+										<td><a href="#">Print</a></td>
+										<td><a href="deletePurchaseOrder">Delete</a></td>
 
-												<td><a
-													href="/BuildingManagement/getProjectInformationById/${projectList.projectId}">
-														<span class="glyphicon glyphicon-pencil"></span>
-												</a></td>
+									</tr>
+								</c:forEach>
 
-												<td><a
-													href="/BuildingManagement/deleteProjectMasterDetailsById/${projectList.projectId}">
-														<span class="glyphicon glyphicon-trash"
-														onclick="return deleteConform('${projectList.projectName}')"></span>
-												</a></td>
-											</tr>
-										</c:forEach>
-
-
-									</tbody>
-								</table>
-							</c:when>
-							<c:otherwise>
-								<table id="example1"
-									class="table table-responsive table-bordered table-hover"
-									style="background-color: white;">
-									<thead>
-										<tr>
-											<th>Document No</th>
-											<th>Document Date</th>
-											<th>Vender code</th>
-											<th>Ref Doc No</th>
-											<th>Ref Doc Date</th>
-											<th>Material</th>
-											<th>Print</th>
-											<th>Delete</th>
-
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-							</c:otherwise>
-						</c:choose>
-						
+							</tbody>
+						</table>
 					</div>
 					<!-- /.box-body -->
 				</div>
@@ -239,14 +198,18 @@ div.panel-body {
 
 
 		<script>
-			function updateActiveStatus(id,name,status) {
-				var data = {"projectId":id,"projectName":name, "projectIsActive": status} 
-				
-				 $.ajax({
+			function updateActiveStatus(id, name, status) {
+				var data = {
+					"projectId" : id,
+					"projectName" : name,
+					"projectIsActive" : status
+				}
+
+				$.ajax({
 					type : "POST",
 					url : "/BuildingManagement/editCategoryMasterStatus",
 					datatype : "application/json",
-					contentType: "application/json; charset=utf-8",
+					contentType : "application/json; charset=utf-8",
 					data : JSON.stringify(data),
 					timeout : 100000,
 					success : function(data) {
@@ -259,18 +222,19 @@ div.panel-body {
 						console.log("DONE");
 					}
 				});
-			    
+
 			};
-			</script>
+		</script>
 		<script>
-			$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
-		    	$("#success-alert").slideUp(500);
+			$("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+				$("#success-alert").slideUp(500);
 			});
 		</script>
 		<script>
-			$("#addProjectFormId").fadeTo(200000, 50000).slideDown(50000, function(){
-		    	$("#addProjectFormId").slideDown(50000);
-			});
+			$("#addProjectFormId").fadeTo(200000, 50000).slideDown(50000,
+					function() {
+						$("#addProjectFormId").slideDown(50000);
+					});
 		</script>
 
 	</div>
