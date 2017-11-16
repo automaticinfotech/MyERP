@@ -1,6 +1,7 @@
 package com.aits.myerp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +21,7 @@ public class UserMasterController {
 	@Autowired
 	UserMasterService userMasterService; 
 
+	@PreAuthorize("hasAnyRole('ROLE_IsAdministrator','ROLE_UserIsSelect')")
 	@RequestMapping(value="/user", method = RequestMethod.GET)
 	public String userPage(ModelMap modelMap) {
 		modelMap.addAttribute("userMasterDto", new UserMasterDto());
@@ -43,6 +45,7 @@ public class UserMasterController {
 		return "admin/createUser";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_IsAdministrator','ROLE_UserIsUpdate')")
 	@RequestMapping(value="/updateUser", method = RequestMethod.GET)
 	public String updateUserPage(@RequestParam("loginId") String updateLoginId,ModelMap modelMap) {
 		modelMap.addAttribute("userMasterDto", userMasterService.getUserByLoginId(updateLoginId));

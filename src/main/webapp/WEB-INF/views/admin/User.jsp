@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,14 +30,18 @@
 			<div>
 				<!-- /.box-header -->
 				<div class="box-body">
+				<sec:authorize access="hasAnyRole('ROLE_IsAdministrator','ROLE_UserIsCreate')">
 				<a href="/MyERP/createUser"><button type="button" class="btn bg-purple margin">Create New</button></a>
+				</sec:authorize>
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>Login Id</th>
 									<th>E-mail</th>
 									<th>Status</th>
+									<sec:authorize access="hasAnyRole('ROLE_IsAdministrator','ROLE_UserIsDelete')">
 									<th>Delete</th>
+									</sec:authorize>
 								</tr>
 							</thead>
 							<tbody>
@@ -48,7 +53,9 @@
 											<c:when test="${currentObject.getIsActive()}">Active</c:when>
 											<c:otherwise>Inactive</c:otherwise>
 										</c:choose></td>
-									<td><a href="deleteUser?loginId=${currentObject.getLoginid()}">Delete</a></td>									
+									<sec:authorize access="hasAnyRole('ROLE_IsAdministrator','ROLE_UserIsDelete')">
+									<td><a href="deleteUser?loginId=${currentObject.getLoginid()}">Delete</a></td>
+									</sec:authorize>									
 								</tr>
 							</c:forEach>
 						</tbody>
