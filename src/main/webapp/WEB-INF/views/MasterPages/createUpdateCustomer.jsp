@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
-	
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

@@ -10,8 +10,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/plugins/datatables/dataTables.bootstrap.css">
 	
-	
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -46,11 +44,11 @@
 													
 													
 												<label>is Finish Good</label><br>	
-													<label>Active
+													<label>Yes
 														  <input type="radio" checked="checked" name="isFG" value="yes">
 														  <span class="checkmark"></span>
 														</label>
-														<label>Inactive
+														<label>No
 														  <input type="radio" name="isFG" value="no">
 														  <span class="checkmark"></span>
 													</label>	
@@ -103,22 +101,22 @@
 												<c:choose>
 						    						<c:when test="${listMaterial.isFG eq 'yes'}">
 						    							<label>is Finish Good</label><br>	
-														<label>Active
+														<label>Yes
 															  <input type="radio" checked="checked" name="isFG" value="yes">
 															  <span class="checkmark"></span>
 															</label>
-															<label>Inactive
-															  <input type="radio" name="isFG" value="inactive">
+															<label>No
+															  <input type="radio" name="isFG" value="no">
 															  <span class="checkmark"></span>
 														</label>
 						    						</c:when>
 						    						<c:otherwise>
 						    							<label>is Finish Good</label><br>	
-														<label>Active
-															  <input type="radio"  name="isActive" value="yes">
+														<label>Yes
+															  <input type="radio"  name="isFG" value="yes">
 															  <span class="checkmark"></span>
 															</label>
-															<label>Inactive
+															<label>No
 															  <input type="radio" checked="checked" name="isFG" value="no">
 															  <span class="checkmark"></span>
 														</label>
