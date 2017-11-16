@@ -37,13 +37,11 @@
 													placeholder="Enter customer Email..." name="customerEmail"  required>
 													
 												<label>CustomerAddressline1</label> <input type="text" class="form-control"
-													placeholder="Enter customerAddressline1..." name="customerAddressline1" maxlength="50" required>
+													placeholder="Enter customer Address line1..." name="customerAddressline1" maxlength="50" required>
 													
 												<label>CustomerAddressline2</label> <input type="text" class="form-control"
-													placeholder="Enter customerAddressline2..." name="customerAddressline2" maxlength="50" required>
+													placeholder="Enter customer Address line2..." name="customerAddressline2" maxlength="50" required>
 													
-												<!-- <label>Active Status</label> <input type="text" class="form-control"
-													name="isActive"> -->
 													
 												<label>Active Status</label><br>	
 													<label>Active
@@ -86,9 +84,6 @@
 													
 												<label>CustomerAddressline2</label> <input type="text" class="form-control"
 													name="customerAddressline2" value="${listCustomerMst.customerAddressline2}" maxlength="50" required>
-													
-												<%-- <label>Active Status</label> <input type="text" class="form-control"
-													name="isActive" value="${listCustomerMst.isActive}"> --%>
 													
 												<c:choose>
 						    						<c:when test="${listCustomerMst.isActive eq 'Active'}">

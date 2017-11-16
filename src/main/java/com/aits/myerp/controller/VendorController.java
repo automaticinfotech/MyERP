@@ -49,7 +49,6 @@ public class VendorController implements appConstant
 	public ModelAndView insertVendor(@ModelAttribute VendorMst vendor) {
 		
 	
-		System.out.println("++++++++++++++++++++++++++++"+vendor.getIsAcive());
 		ModelAndView model = new  ModelAndView();
 		if(vendorService.addVendor(vendor))
 		{

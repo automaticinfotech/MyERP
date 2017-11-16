@@ -38,13 +38,13 @@
 				   <table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>material ID</th>
-								<th>material Name</th>
-								<th>material Code</th>
-								<th>material Desc</th>
+								<th>Material ID</th>
+								<th>Material Name</th>
+								<th>Material Code</th>
+								<th>Material Desc</th>
 								<th>UOM</th>
-								<th>is Finish Good</th>
-								<th>material status</th>
+								<th>Is Finish Good</th>
+								<th>Material status</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
@@ -72,14 +72,13 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>material ID</th>
-								<th>material Name</th>
-								<th>material Code</th>
-								<th>Address Line 1</th>
-								<th>Address Line 2</th>
-								<th>material Email</th>
-								<th>material Status</th>
-								<th>Edit</th>
+								<th>Material ID</th>
+								<th>Material Name</th>
+								<th>Material Code</th>
+								<th>Material Desc</th>
+								<th>UOM</th>
+								<th>Is Finish Good</th>
+								<th>Material status</th>
 								<th>Delete</th>
 							</tr>
 						</tfoot>

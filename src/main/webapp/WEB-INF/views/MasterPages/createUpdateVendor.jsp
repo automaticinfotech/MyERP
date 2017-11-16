@@ -42,13 +42,11 @@
 													placeholder="Enter vendor Email..." name="vendorEmail" required>
 													
 												<label>vendorAddressline1</label> <input type="text" class="form-control"
-													placeholder="Enter vendorAddressline1..." name="vendorAddressline1" maxlength="50" required>
+													placeholder="Enter vendor Address line1..." name="vendorAddressline1" maxlength="50" required>
 													
 												<label>vendorAddressline2</label> <input type="text" class="form-control"
-													placeholder="Enter vendorAddressline2..." name="vendorAddressline2" maxlength="50" required>
+													placeholder="Enter vendor Address line2..." name="vendorAddressline2" maxlength="50" required>
 													
-												<!-- <label>Active Status</label> <input type="text" class="form-control"
-													name="isAcive"> -->		
 												<label>Active Status</label><br>	
 													<label>Active
 														  <input type="radio" checked="checked" name="isAcive" value="Active">
@@ -89,8 +87,6 @@
 												<label>vendorAddressline2</label> <input type="text" class="form-control"
 													name="vendorAddressline2" value="${listVendor.vendorAddressline2}" required>
 													
-												<%-- <label>Active Status</label> <input type="text" class="form-control"
-													name="isAcive" value="${listVendor.isAcive}"> --%>
 													
 												<c:choose>
 						    						<c:when test="${listVendor.isAcive eq 'Active'}">

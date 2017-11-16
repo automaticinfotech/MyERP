@@ -36,21 +36,13 @@
 												<label>Material Description</label> <input type="text" class="form-control"
 													placeholder="Enter Material Description..." name="materialDesc" maxlength="50" required>
 													
-												<!-- <label>Unite of Measurement</label> <input type="text" class="form-control"
-													placeholder="Enter UOM" name="UOM" maxlength="4" required> -->
 													
 												<label>Unite of Measurement</label>	
 												<select class="form-control" name="UOM"  id="UOM">
-												    <option value="KG">KG</option>
-												    <option value="MG">MG</option>
-												    <option value="GM">GM</option>
+												    <option value="kg">kilogram</option>
+												    <option value="gm">gram</option>
+												    <option value="mg">milligram</option>
 												</select>	
-													
-													
-													
-												<!-- <label>is Finish Good</label> <input type="text" class="form-control"
-													placeholder="Enter Finish Good status..." name="isFG"> -->
-													
 													
 												<label>is Finish Good</label><br>	
 													<label>Yes
@@ -63,8 +55,7 @@
 													</label>	
 													
 												<br>	
-												<!-- <label>Active Status</label> <input type="text" class="form-control"
-													placeholder="Enter Active..." name="isActive"> -->
+												
 												<label>Active Status</label><br>	
 													<label>Active
 														  <input type="radio" checked="checked" name="isActive" value="Active">
@@ -101,19 +92,32 @@
 											        name="materialDesc" value="${listMaterial.materialDesc}" maxlength="50" required>
 											        
 													
-												<label>Unite of Measurement</label> <input type="text" class="form-control"
-													 name="UOM" value="${listMaterial.UOM}" maxlength="6" required>
+													 
+												<label>Unite of Measurement</label>
+												<c:choose>
+						    						<c:when test="${listMaterial.UOM eq 'kg'}">
+						    							<select class="form-control" name="UOM"  id="UOM">
+														    <option value="kg" selected>kilogram</option>
+														    <option value="gm">gram</option>
+														    <option value="mg">milligram</option>
+														</select>
+						    						</c:when>
+						    						<c:when test="${listMaterial.UOM eq 'gm'}">
+						    								<select class="form-control" name="UOM"  id="UOM">
+														    <option value="kg">kilogram</option>
+														    <option value="gm" selected>gram</option>
+														    <option value="mg">milligram</option>
+														</select>
+						    						</c:when>
+						    						<c:otherwise>
+						    							<select class="form-control" name="UOM"  id="UOM">
+														    <option value="kg">kilogram</option>
+														    <option value="gm">gram</option>
+														    <option value="mg" selected>milligram</option>
+														</select>
+						    						</c:otherwise>
+						    					</c:choose>
 												
-												<!-- value="KG" -->
-												<%-- <select class="form-control" name="UOM"  id="UOM">
-												    <option  <%= (listMaterial.UOM.equals("KG")?"selected='selected'":"") %>>KG</option>
-												    <option  <%= (listMaterial.UOM.equals("KG")?"selected='selected'":"") %>>KG</option>
-												     
-												</select> --%>
-												
-													
-												<%-- <label>is Finish Good</label> <input type="text" class="form-control"
-													name="isFG" value="${listMaterial.isFG}"> --%>
 													
 												<c:choose>
 						    						<c:when test="${listMaterial.isFG eq 'yes'}">
@@ -141,8 +145,6 @@
 						    					</c:choose>		
 													
 													
-												<%-- <label>Active Status</label> <input type="text" class="form-control"
-													name="isActive" value="${listMaterial.isActive}"> --%>
 												<br>	
 												<c:choose>
 						    						<c:when test="${listMaterial.isActive eq 'Active'}">

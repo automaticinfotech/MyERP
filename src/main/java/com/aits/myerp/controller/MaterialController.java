@@ -51,7 +51,6 @@ public class MaterialController implements appConstant {
 	@RequestMapping(value=INSERT_MATERIAL, method = RequestMethod.POST)
 	public ModelAndView insertMaterial(@ModelAttribute MaterialMst materialMst) {
 		
-		System.out.println("UOM++++++++++++++++++++++++++++++"+materialMst.getUOM());
 		ModelAndView model = new  ModelAndView();
 		if(materialService.addMaterial(materialMst))
 		{

@@ -80,7 +80,6 @@
 								<th>Address Line 2</th>
 								<th>Vendor Email</th>
 								<th>Vendor Status</th>
-								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</tfoot>
