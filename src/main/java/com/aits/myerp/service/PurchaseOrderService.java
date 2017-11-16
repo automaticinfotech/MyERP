@@ -10,4 +10,7 @@ public interface PurchaseOrderService {
 public void savePurchaseOrder(PurchaseOrderDetails purchaseOrderDetails);
 public List<VendorMst> getAllVenderList();
 public List<MaterialMst> getAllMaterialList();
+public List getAllPurchaseDetails();
+public List getSalesOrderDocumentList();
+
 }

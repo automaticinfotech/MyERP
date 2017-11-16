@@ -45,11 +45,11 @@ public class PurchaseOrderDetails implements Serializable{
 	private int rate;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "documentID")
 	private PurchaseOrderHeader purchaseOrderHeader;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "materialId")
 	private MaterialMst materialMst;
 		

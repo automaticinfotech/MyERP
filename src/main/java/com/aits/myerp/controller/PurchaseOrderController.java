@@ -3,6 +3,8 @@ package com.aits.myerp.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,142 +28,142 @@ public class PurchaseOrderController {
 	private final String pagePrefix="POPages/";
 	private String allPurchaseOrdersPage="allPurchaseOrders";
 	private String newPurchaseOrderPage="newPurchaseOrder";
-	
+
 	ArrayList<PurchaseOrderDetails> purchaseOrderDetailsList =new ArrayList<PurchaseOrderDetails>();;
-	
+
 
 
 	@Autowired
 	private PurchaseOrderService purchaseOrderService; 
 
 	@RequestMapping(value="allPurchaseOrders",method=RequestMethod.GET)
-	public String allPurchaseOrderPage()
+	public String allPurchaseOrderPage(Model model)
 	{
 
+
+
+		List purchaseDetailsList=purchaseOrderService.getAllPurchaseDetails();
+
+		model.addAttribute("purchaseDetailsList", purchaseDetailsList);
 		return pagePrefix+allPurchaseOrdersPage;
 
 	}
-	
+
 
 	@RequestMapping(value="newPurchaseOrder",method=RequestMethod.GET)
 	public String newPurchaseOrderPage(Model model)
 	{
 
-		
+
 		/*List<VendorMst> venderList=purchaseOrderService.getAllVenderList();*/
-		
+
 		List<VendorMst> venderList=purchaseOrderService.getAllVenderList();
 		List<MaterialMst> materialList=purchaseOrderService.getAllMaterialList();
-			
+		List salesOrderDocumentList=purchaseOrderService.getSalesOrderDocumentList();
+
 		model.addAttribute("venderList", venderList);
 		model.addAttribute("materialList", materialList);
-		
+		model.addAttribute("salesOrderDocumentNoList", salesOrderDocumentList);
+
 		model.addAttribute("purchaseOrderDetails", new PurchaseOrderDetails());
-			
+
 		return pagePrefix+newPurchaseOrderPage;
 
 	}
-	
+
 	@RequestMapping(value="insertPurchOrd",method=RequestMethod.POST)
-	public String insertPurchaseOrder(@ModelAttribute("purchaseOrderDetails")PurchaseOrderDetails purchaseOrderDetails,Model model)
+	public String insertPurchaseOrder(@ModelAttribute("purchaseOrderDetails")PurchaseOrderDetails purchaseOrderDetails,Model model,HttpSession session)
 	{
-		
-		/*VendorMst vendorMst=new VendorMst();
-		
+
+		VendorMst vendorMst=new VendorMst();
 		vendorMst.setVendorId(purchaseOrderDetails.getPurchaseOrderHeader().getVendorMst().getVendorId());
-		
-		
-		
+
+
+
 		PurchaseOrderHeader purchaseOrderHeader=new PurchaseOrderHeader();
-		purchaseOrderHeader.setDocumentNo(purchaseOrderDetails.getPurchaseOrderHeader().getDocumentNo());
+
+
+		String documentNo="PR/"+"2017/"+purchaseOrderDetails.getPurchaseOrderHeader().getDocumentNo();
+
+
+		purchaseOrderHeader.setDocumentNo(documentNo);
 		purchaseOrderHeader.setDocumentDate(purchaseOrderDetails.getPurchaseOrderHeader().getDocumentDate());
 		purchaseOrderHeader.setNotes(purchaseOrderDetails.getPurchaseOrderHeader().getNotes());
 		purchaseOrderHeader.setRefDocNo(purchaseOrderDetails.getPurchaseOrderHeader().getRefDocNo());
 		purchaseOrderHeader.setRefDocDate(purchaseOrderDetails.getPurchaseOrderHeader().getRefDocDate());
 		purchaseOrderHeader.setVendorMst(vendorMst);
-		
-		//purchaseOrderHeader.setVendorMst(vendorMst);(purchaseOrderDetails.getPurchaseOrderHeader().getVendorMst().getVendorId());
-		
-		
+
+
+		MaterialMst materialMst=new MaterialMst();
+		materialMst.setMaterialId(purchaseOrderDetails.getMaterialMst().getMaterialId());
+
+
 		PurchaseOrderDetails pOrderDetails=new PurchaseOrderDetails();
 		pOrderDetails.setExpDeliveryDate(purchaseOrderDetails.getExpDeliveryDate());
-		pOrderDetails.setMaterialID(purchaseOrderDetails.getMaterialID());
+		pOrderDetails.setMaterialMst(materialMst);
 		pOrderDetails.setNotes(purchaseOrderDetails.getNotes());
-        pOrderDetails.setQuantity(purchaseOrderDetails.getQuantity());
-        pOrderDetails.setRate(purchaseOrderDetails.getRate());
-        
-        		
-		
+		pOrderDetails.setQuantity(purchaseOrderDetails.getQuantity());
+		pOrderDetails.setRate(purchaseOrderDetails.getRate());
+
+
 		pOrderDetails.setPurchaseOrderHeader(purchaseOrderHeader);
-		*/
 
 		
+		purchaseOrderService.savePurchaseOrder(pOrderDetails);
+
 		purchaseOrderDetailsList.add(purchaseOrderDetails);
 		
-		
-		model.addAttribute("purchaseOrderDetailsList", purchaseOrderDetailsList);
-		
-		
-		
-		
-		
+		session.setAttribute("purchaseOrderDetailsList", purchaseOrderDetailsList);
 		
 		List<VendorMst> venderList=purchaseOrderService.getAllVenderList();
 		List<MaterialMst> materialList=purchaseOrderService.getAllMaterialList();
-			
+		List salesOrderDocumentList=purchaseOrderService.getSalesOrderDocumentList();
+
 		model.addAttribute("venderList", venderList);
 		model.addAttribute("materialList", materialList);
-		model.addAttribute("purchaseOrderDetails", new PurchaseOrderDetails());
-		
-		
+		model.addAttribute("salesOrderDocumentNoList", salesOrderDocumentList);
+		model.addAttribute("purchaseOrderDetails", purchaseOrderDetails);
+		model.addAttribute("successMessage","Inserted successfully the purchase order...");
 		
 		
 		return pagePrefix+newPurchaseOrderPage;
 
 	}
-	
-	
-	
-	
-	@RequestMapping(value="savePurchOrd",method=RequestMethod.POST)
-	public String savePurchaseOrder(@ModelAttribute("purchaseOrderDetails")PurchaseOrderDetails purchaseOrderDetails,Model model)
+
+
+
+
+	@RequestMapping(value="savePurchOrd",method=RequestMethod.GET)
+	public String savePurchaseOrder(Model model)
 	{
-/*
-		System.out.println("Header=="+purchaseOrderDetails.getPurchaseOrderHeader().getDocumentNo());
 		
-		System.out.println("Details=="+purchaseOrderDetails.getNotes());
+
+		List purchaseDetailsList=purchaseOrderService.getAllPurchaseDetails();
+
+		model.addAttribute("purchaseDetailsList", purchaseDetailsList);
+		model.addAttribute("successMessage","Purchase Order saved successfully.....");
 		
-		
-		PurchaseOrderHeader purchaseOrderHeader=new PurchaseOrderHeader();
-		purchaseOrderHeader.setDocumentNo(purchaseOrderDetails.getPurchaseOrderHeader().getDocumentNo());
-		purchaseOrderHeader.setDocumentDate(purchaseOrderDetails.getPurchaseOrderHeader().getDocumentDate());
-		purchaseOrderHeader.setNotes(purchaseOrderDetails.getPurchaseOrderHeader().getNotes());
-		purchaseOrderHeader.setRefDocNo(purchaseOrderDetails.getPurchaseOrderHeader().getRefDocNo());
-		purchaseOrderHeader.setRefDocDate(purchaseOrderDetails.getPurchaseOrderHeader().getRefDocDate());
-		//purchaseOrderHeader.setVendorID(purchaseOrderDetails.getPurchaseOrderHeader().getVendorID());
-		
-		
-		PurchaseOrderDetails pOrderDetails=new PurchaseOrderDetails();
-		pOrderDetails.setExpDeliveryDate(purchaseOrderDetails.getExpDeliveryDate());
-		pOrderDetails.setMaterialID(purchaseOrderDetails.getMaterialID());
-		pOrderDetails.setNotes(purchaseOrderDetails.getNotes());
-        pOrderDetails.setQuantity(purchaseOrderDetails.getQuantity());
-        pOrderDetails.setRate(purchaseOrderDetails.getRate());
-        
-        
+		return pagePrefix+allPurchaseOrdersPage;
+
+	}
+	
+	@RequestMapping(value="deletePurchaseOrder",method=RequestMethod.GET)
+	public String deletePurchaseOrder(Model model)
+	{
 		
 		
 		
 		
 		
-		pOrderDetails.setPurchaseOrderHeader(purchaseOrderHeader);
 		
 		
 		
-		purchaseOrderService.savePurchaseOrder(pOrderDetails);
 		
 		
-		model.addAttribute("purchaseOrderDetails", new PurchaseOrderDetails());*/
+		List purchaseDetailsList=purchaseOrderService.getAllPurchaseDetails();
+
+		model.addAttribute("purchaseDetailsList", purchaseDetailsList);
+		model.addAttribute("successMessage1","Purchase Order saved successfully.....");
 		
 		return pagePrefix+allPurchaseOrdersPage;
 
@@ -170,7 +172,12 @@ public class PurchaseOrderController {
 	
 	
 	
-
 	
+
+
+
+
+
+
 
 }

@@ -54,7 +54,7 @@ public class PurchaseOrderHeader implements Serializable {
 
 	
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "vendorId")
 	private VendorMst vendorMst;
 	

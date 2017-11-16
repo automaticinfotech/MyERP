@@ -17,28 +17,19 @@ import com.aits.myerp.model.VendorMst;
 
 
 @Repository
-@Transactional
 public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	
-	
+
+
 	@Override
 	public void savePurchaseOrder(PurchaseOrderDetails pOrderDetails) {
 		// TODO Auto-generated method stub
-         
-		Session session = sessionFactory.openSession();
-		
-		Integer primaryKey = (Integer) session.save(pOrderDetails);
-		
-		
-          
-          
-          
-       
-          
-           
+
+		sessionFactory.getCurrentSession().saveOrUpdate(pOrderDetails);;	
+
+
 	}
 
 
@@ -46,15 +37,15 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
 	@Override
 	public List<VendorMst> getAllVenderList() {
 		// TODO Auto-generated method stub
-		
-		String hql = "FROM VendorMst V WHERE V.isAcive ='on'";
+
+		String hql = "FROM VendorMst V WHERE V.isAcive ='Active'";
 		Session session=sessionFactory.openSession();
-		
+
 		Query query = session.createQuery(hql);
 		List VendorMstList=query.list();
-		
+
 		System.out.println(VendorMstList);
-		
+
 		return VendorMstList;
 	}
 
@@ -62,19 +53,42 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
 
 	@Override
 	public List<MaterialMst> getAllMaterialList() {
-		
-		
-		String hql = "FROM MaterialMst m WHERE m.isActive ='on'";
+
+
+		String hql = "FROM MaterialMst m WHERE m.isActive ='Active'";
 		Session session=sessionFactory.openSession();
-		
+
 		Query query = session.createQuery(hql);
 		List<MaterialMst> MaterialMstList=query.list();
-		
+
 		System.out.println(MaterialMstList);
-		
+
 		return MaterialMstList;
 	}
-	
-	
-	
+
+
+
+	@Override
+	public List getAllPurchaseDetails() {
+		String hql = "FROM PurchaseOrderDetails";
+		Session session=sessionFactory.openSession();
+		Query query = session.createQuery(hql);
+		List PurchaseDetailsList=query.list();
+		return PurchaseDetailsList;
+	}
+
+
+
+	@Override
+	public List getSalesOrderDocumentList() {
+		String hql = "FROM SalesOrderHeaderModel";
+		Session session=sessionFactory.openSession();
+		Query query = session.createQuery(hql);
+		List SalesOrderDocumentNoList=query.list();
+		return SalesOrderDocumentNoList;
+		
+	}
+
+
+
 }
