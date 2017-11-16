@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 
 @Entity
 public class UserMasterModel {
@@ -21,9 +20,7 @@ public class UserMasterModel {
 	private String email;
 	@Column
 	private Boolean isActive;
-	@Column
-	private Boolean isAdminstrator;
-	
+		
 	public Integer getUserid() {
 		return userid;
 	}
@@ -53,11 +50,5 @@ public class UserMasterModel {
 	}
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
-	}
-	public Boolean getIsAdminstrator() {
-		return isAdminstrator;
-	}
-	public void setIsAdminstrator(Boolean isAdminstrator) {
-		this.isAdminstrator = isAdminstrator;
 	}
 }
