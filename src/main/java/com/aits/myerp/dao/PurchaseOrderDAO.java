@@ -12,4 +12,5 @@ public interface PurchaseOrderDAO {
 	public List<MaterialMst> getAllMaterialList();
 	public List getAllPurchaseDetails();
 	public List getSalesOrderDocumentList();
+	public void removePurchaseOrder(int prNumber);
 }

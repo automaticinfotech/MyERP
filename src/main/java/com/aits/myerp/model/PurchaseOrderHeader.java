@@ -83,7 +83,12 @@ public class PurchaseOrderHeader implements Serializable {
 		return documentNo;
 	}
 	public void setDocumentNo(String documentNo) {
-		this.documentNo = documentNo;
+		
+		
+		
+		this.documentNo=documentNo;
+		
+		
 	}
 	public String getDocumentDate() {
 		return documentDate;

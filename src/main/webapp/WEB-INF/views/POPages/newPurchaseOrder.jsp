@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.io.*,java.util.*, javax.servlet.*"%>
+
 <!DOCTYPE html >
 <html>
 <head>
@@ -67,15 +69,13 @@
 			return false;
 		}
 	}
-	
-	function Clear()
-	{    
-	   document.getElementById("textbox1").value= "";
-	   document.getElementById("textbox2").value= "";
-	   document.getElementById("textbox3").value= "";
-	   document.getElementById("textbox4").value= "";
+
+	function Clear() {
+		document.getElementById("textbox1").value = "";
+		document.getElementById("textbox2").value = "";
+		document.getElementById("textbox3").value = "";
+		document.getElementById("textbox4").value = "";
 	}
-	
 </script>
 <style>
 div.panel-body {
@@ -128,16 +128,12 @@ div.panel-body {
 									<div class="col-md-5">
 										<label>Document No</label>
 										<form:input path="purchaseOrderHeader.documentNo"
-											class="form-control" placeholder="Document No ..."
-											title="Enter alphanumeric only" required="required"
-											name="ProjectName" />
+											class="form-control" placeholder="PR/2017/..."
+											title="Enter alphanumeric only" name="ProjectName"
+											type="text" readonly="true" />
 									</div>
 									<div class="col-md-5">
 										<label>Ref Document No</label>
-										<%-- <form:input path=""
-											class="form-control" placeholder="Ref Document No ..."
-											title="Enter alphanumeric only" required="required"
-											name="ProjectName" /> --%>
 
 										<form:select path="purchaseOrderHeader.refDocNo"
 											class="form-control" placeholder="Ref Document No ..."
@@ -145,41 +141,43 @@ div.panel-body {
 											<form:option value="0">--------Select-------</form:option>
 
 											<form:option value="SO/2017/0000">SO/2017/0000</form:option>
-											
-										
-											<c:forEach items="${salesOrderDocumentNoList}" var="soDoNo"> 
-                                                   <form:option
-													value="${soDoNo.sodocumentNumber}">${soDoNo.sodocumentNumber}</form:option>
+											<form:option value="SO/2017/0001">SO/2017/0001</form:option>
+											<form:option value="SO/2017/0002">SO/2017/0002</form:option>
+											<form:option value="SO/2017/0003">SO/2017/0003</form:option>
 
+											<c:forEach items="${salesOrderDocumentNoList}" var="soDoNo">
+												<form:option value="${soDoNo.sodocumentNumber}">${soDoNo.sodocumentNumber}</form:option>
 											</c:forEach>
 										</form:select>
-
 									</div>
-
 								</div>
 								<div class="form-group">
-
 									<div class="col-md-5">
 										<label>Document Date</label>
+										<%  Date date = new Date();
+																
+										
+										%>
+
 										<form:input path="purchaseOrderHeader.documentDate"
-											class="form-control" placeholder="Document Date..."
-											title="Enter alphanumeric only" required="required" name=""
-											type="date" />
-
+											class="form-control" placeholder="2017/."
+											title="Enter alphanumeric only" type="text"
+											value="<%= date.toString()%>" readonly="true" />
 									</div>
-
 									<div class="col-md-5">
 										<label>Ref Document Date</label>
-										<form:input path="purchaseOrderHeader.refDocDate"
-											class="form-control" placeholder="Ref Document Date..."
-											title="Enter alphanumeric only" required="required" name=""
-											type="date" />
+										<c:forEach items="${salesOrderDocumentNoList}" var="soDoNo">
+					
+											<form:input path="purchaseOrderHeader.refDocDate"
+												class="form-control" placeholder="Ref Document Date..."
+												title="Enter alphanumeric only" required="required" name=""
+												type="text" value="${soDoNo.sodocumentNumber}" readonly="true" />
+
+
+										</c:forEach>
 									</div>
 								</div>
-
-
 								<div class="form-group">
-
 									<div class="col-md-8">
 										<label>Vender </label>
 										<form:select path="purchaseOrderHeader.vendorMst.vendorId"
@@ -190,39 +188,22 @@ div.panel-body {
 												<form:option value="${vendor.vendorId}">${vendor.vendorName}</form:option>
 											</c:forEach>
 										</form:select>
-
-
 									</div>
-
-
 								</div>
-
-
 								<div class="form-group">
-
 									<div class="col-md-8">
 										<label>Notes </label>
 										<form:textarea path="purchaseOrderHeader.notes"
 											class="form-control" placeholder="Notes ..."
 											title="Enter alphanumeric only" required="required" />
 									</div>
-
-
 								</div>
-
 								<div class="form-group">
-
 									<div class="col-md-10">
 										<label><h3>Purchase Order Details</h3></label>
-
 									</div>
-
-
 								</div>
-
-
 								<div class="form-group">
-
 									<div class="col-md-4">
 										<label>Material </label>
 										<form:select path="materialMst.materialId"
@@ -230,99 +211,56 @@ div.panel-body {
 											title="Enter alphanumeric only" required="required"
 											name="ProjectName">
 											<form:option value="0">--------Select-------</form:option>
-
 											<c:forEach items="${materialList}" var="material">
 												<form:option value="${material.materialId}">${material.materialName}</form:option>
 											</c:forEach>
-
 										</form:select>
-
-
 									</div>
-
 									<div class="col-md-4">
 										<label>Quantity </label>
-
-
 										<form:input path="quantity" class="form-control"
 											placeholder="Quantity..." title="Enter alphanumeric only"
 											required="required" />
-
 									</div>
-
 									<div class="col-md-4">
 										<label>Rate </label>
-
 										<form:input path="rate" class="form-control"
 											placeholder="Rate..." title="Enter alphanumeric only"
-											required="required"  />
-
-
+											required="required" />
 									</div>
-
-
 								</div>
 								<div class="form-group">
-
 									<div class="col-md-4"></div>
-
 									<div class="col-md-4"></div>
-
 									<div class="col-md-4">
 										<label>EXP Delivery Date </label>
 										<form:input path="expDeliveryDate" class="form-control"
 											placeholder="EXP Delivery Date..."
 											title="Enter alphanumeric only" required="required"
-											name="ProjectName" type="date" onClick="Clear();" id="textbox3"/>
-
-
+											name="ProjectName" type="date"  />
 									</div>
-
-
 								</div>
-
-
 								<div class="form-group">
-
 									<div class="col-md-8">
 										<label>Notes </label>
 										<form:textarea path="notes" class="form-control"
 											placeholder="Notes .." title="Enter alphanumeric only"
 											required="required" />
-
-
-
 									</div>
-
-
 								</div>
-
-
-
-
-
-
 							</div>
-
-
-
-
 							<div align="center" class="panel-footer">
 								<button type="submit" class="btn bg-blue margin">Insert</button>
-							<!-- 	<button type="reset" class="btn bg-blue margin">Update</button>
-								<button type="reset" class="btn bg-blue margin">Remove</button>  -->
+								<button type="reset" class="btn bg-blue margin">Update</button>
+								<button type="reset" class="btn bg-blue margin">Remove</button>
 							</div>
 						</div>
-
 					</form:form>
 				</div>
 			</div>
 			<div class="col-md-1"></div>
-
 			<div>
 				<div class="box-body">
-
-
 					<div>
 						<hr>
 						<c:choose>
@@ -334,14 +272,11 @@ div.panel-body {
 										<tr>
 											<th></th>
 											<th>Material ID</th>
-
 											<th>Quantity</th>
-
 											<th>Rate</th>
 											<th>Amount</th>
 											<th>Exp. Delivery Date</th>
 											<th>Notes</th>
-
 										</tr>
 									</thead>
 									<tbody>
@@ -350,18 +285,12 @@ div.panel-body {
 											<tr>
 												<td></td>
 												<td>${purchaseOrderDetails.materialMst.materialId}</td>
-
 												<td>${purchaseOrderDetails.rate}</td>
 												<td>${purchaseOrderDetails.quantity}</td>
-
-
 												<td>${purchaseOrderDetails.rate * purchaseOrderDetails.quantity}
-
 												</td>
 												<td>${purchaseOrderDetails.expDeliveryDate}</td>
 												<td>${purchaseOrderDetails.notes}</td>
-
-
 												<!-- <td><a href=""> <span
 														class="glyphicon glyphicon-pencil"></span>
 												</a></td>
@@ -371,16 +300,10 @@ div.panel-body {
 												</a></td> -->
 											</tr>
 										</c:forEach>
-
-
-
-
 									</tbody>
 								</table>
 							</c:when>
 							<c:otherwise>
-
-
 								<table id="example1"
 									class="table table-responsive table-bordered table-hover"
 									style="background-color: white;">
@@ -392,7 +315,6 @@ div.panel-body {
 											<th>Amount</th>
 											<th>Exp. Delivery Date</th>
 											<th>Notes</th>
-
 										</tr>
 									</thead>
 									<tbody>
@@ -402,7 +324,8 @@ div.panel-body {
 						</c:choose>
 						<div align="center">
 							<a href="savePurchOrd"><button class="btn bg-blue margin">Save</button></a>
-							<!-- <button type="reset" class="btn bg-blue margin">Cancel</button> -->
+							<a href="savePurchOrd"><button class="btn bg-blue margin">Cancel</button>
+							</a>
 						</div>
 
 					</div>

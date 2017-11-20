@@ -107,7 +107,7 @@ div.panel-body {
 			<div>
 				<div class="box-body">
 					<div>
-						<a href="newPurchaseOrder"><button type="submit"
+						<a href="/MyERP/newPurchaseOrder"><button type="submit"
 								class="btn btn-success btn-sm">Create New Purchase
 								Order</button></a>
 						<hr>
@@ -134,6 +134,7 @@ div.panel-body {
 								<c:forEach items="${purchaseDetailsList}" var="poDetails">
 
 									<tr>
+									    
 										<td>${poDetails.purchaseOrderHeader.documentNo}</td>
 										<td>${poDetails.purchaseOrderHeader.documentDate}</td>
 										<td>${poDetails.purchaseOrderHeader.vendorMst.vendorName}</td>
@@ -144,7 +145,8 @@ div.panel-body {
 										<td>${poDetails.purchaseOrderHeader.refDocNo}</td>
 										<td>${poDetails.purchaseOrderHeader.refDocDate}</td>
 										<td><a href="#">Print</a></td>
-										<td><a href="deletePurchaseOrder">Delete</a></td>
+										<%-- <td><a href="deletePurchaseOrder/${poDetails.documentId}">Delete</a></td> --%>
+										<td><a href="<c:url value='/deletePurchaseOrder/${poDetails.poDetailsID}' />">Delete</a></td>
 
 									</tr>
 								</c:forEach>

@@ -51,4 +51,10 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 		return purchaseOrderDAO.getSalesOrderDocumentList();
 	}
 
+	@Override
+	public void removePurchaseOrder(int prNumber) {
+		// TODO Auto-generated method stub
+		purchaseOrderDAO.removePurchaseOrder(prNumber);
+	}
+
 }

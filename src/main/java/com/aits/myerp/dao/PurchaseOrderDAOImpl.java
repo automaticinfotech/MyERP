@@ -91,4 +91,19 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
 
 
 
+	@Override
+	public void removePurchaseOrder(int prNumber) {
+		// TODO Auto-generated method stub
+		
+		
+			
+		PurchaseOrderDetails purchaseOrderDetails=(PurchaseOrderDetails)sessionFactory.getCurrentSession().get(PurchaseOrderDetails.class,prNumber);
+		if(null!=purchaseOrderDetails)
+		{
+		sessionFactory.getCurrentSession().delete(purchaseOrderDetails);
+		}
+	}
+
+
+
 }
